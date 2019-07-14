@@ -1,0 +1,794 @@
+{% load static %}
+<html class="night-mode" lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/static/shop/assetsx/images/favicon.png">
+        <meta name="description" content="">
+        <title>EDUNEER | {% block title %}{% endblock %}</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="/static/shop/assetsx/images/eduneer-icon.png">
+        <!-- Your stylesheet-->
+        <link rel="stylesheet" href="/static/shop/assets/css/uikit.css"> 
+        <link rel="stylesheet" href="/static/shop/assets/css/main.css"> 
+        <!-- font awesome -->         
+        <link rel="stylesheet" href="/static/shop/assets/css/fontawesome.css">
+        <!--  javascript -->
+        <script src="/static/shop/assets/js/simplebar.js"></script>         
+        <script src="/static/shop/assets/js/uikit.js"></script>   
+        <link rel="stylesheet" href="/static/shop/assets/css/admin.css"> 
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" ></script>
+        
+        <style type="text/css">
+            @font-face {
+                font-family: "OCR A Std Regular";
+                src: url(/static/shop/assetsx/fonts/ocr/ocr.ttf) format("truetype");
+            }
+    
+            .customfont {
+                font-family: "OCR A Std Regular";
+            }
+        </style>
+    </head>     
+    <body > 
+        <!-- PreLoader -->         
+        <div id="spinneroverlay"> 
+            <div class="spinner"></div>             
+        </div>         
+       
+        
+
+
+
+
+
+       <!-- Nav for  mobile  -->
+       <div class="tm-mobile-header uk-hidden@m">
+        <nav class="uk-navbar-container uk-navbar" uk-navbar="">
+            <div class="uk-navbar-left">
+                    <img src="{% static 'shop/assetsx/images/eduneer-icon.png' %}" style="width:42px"
+                    class="mr-2" alt="Eduneer" />
+                <span class="d-none d-xs-md-block customfont">EDUNEER</span>                    </div>
+            <div class="uk-navbar-right">
+                <a class="uk-navbar-toggle" href="#tm-mobile" uk-toggle>
+                    <div class="uk-navbar-toggle-icon">
+                        <i class="far fa-bars icon-large uk-text-black"></i>
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <!-- model mobile menu -->
+        <div id="tm-mobile" class="uk-modal-full uk-modal" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body uk-text-center uk-flex" uk-height-viewport>
+                <button class="uk-modal-close-full uk-close uk-icon" type="button" uk-close></button>                     
+                <div class="uk-margin-auto-vertical uk-width-1-1">
+                    <div class="uk-child-width-1-1" uk-grid>
+                        <div>
+                            <div class="uk-panel">
+                                <ul class="uk-nav uk-nav-primary uk-nav-center nav-white">
+                                    <li class="uk-active">
+                                        <a href="landing-home.html">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="landing-blog.html">Blog</a>
+                                    </li>                                         
+                                    <li>
+                                        <a href="landing-about.html">About</a> 
+                                    </li>
+                                    <li>
+                                        <a href="landing-pricing.html">Pricing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../main/authentication.html">Sing in</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel widget-text" id="widget-text-1">
+                                <div class="textwidget">
+                                    <p class="uk-text-center"><a class="uk-button uk-button-success uk-button-large" href="../main/Homepage.html"> Start now </a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>             
+    </div>
+    <!-- Navbar   -->
+    <div class="tm-header uk-visible@m tm-header-transparent uk-margin-top">
+        <div uk-sticky media="768" animation="uk-animation-slide-top" cls-active="uk-navbar-sticky uk-nav-dark" sel-target=".uk-navbar-container" top=".tm-header ~ [class*=&quot;uk-section&quot;], .tm-header ~ * > [class*=&quot;uk-section&quot;]" cls-inactive="uk-navbar-transparent   uk-dark" class="uk-sticky uk-navbar-container">
+            <div class="uk-container  uk-position-relative">
+                <nav class="uk-navbar uk-navbar-transparent">
+                   <!-- logo -->
+                        <!-- mobile icon for side nav on nav-mobile-->
+                    <span class="uk-hidden@m tm-mobile-menu-icon" uk-toggle="target: #mobile-sidebar"><i
+                            class="fas fa-bars icon-large"></i></span>
+                    <!-- mobile icon for user icon on nav-mobile -->
+                    <span class="uk-hidden@m tm-mobile-user-icon uk-align-right"
+                        uk-toggle="target: #tm-show-on-mobile; cls: tm-show-on-mobile-active"><i
+                            class="fas fa-user icon-large"></i></span>
+                    <!-- mobile logo -->
+                    <a class="uk-hidden@m uk-logo" href="#"> <span class="customfont">EDUNEER</span></a>
+                    <div class="uk-navbar-left uk-visible@m">
+                        <a href="#" class="uk-logo uk-margin-left"> <img
+                                src="/static/shop/assetsx/images/eduneer-icon.png" style="width:42px; margin-top:-6px"
+                                alt="Eduneer" /><span class="customfont">EDUNEER</span></a>
+                    </div>
+
+                    
+                    <!-- right navbar  -->
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav toolbar-nav">
+                            <li class="{{home_active}}">
+                                <a href={% url 'shop:home' %}>Home</a>
+                            </li>
+                            <li class="{{courses_active}}">
+                                <a href={% url 'shop:courses' %}>Courses</a>
+                            </li>                                 
+                          
+                            <li class="{{talks_active}}">
+                                <a href={% url 'shop:talks' %}>Talks</a>
+                            </li>
+                            <li class="{{news_active}}">
+                                <a href={% url 'shop:news' %}>News </a>
+                            </li> 
+                            <li class="{{partners_active}}">
+                                <a href={% url 'shop:partners' %}>Partners </a>
+                            </li>    
+                            <li class="{{about_active}}">
+                                <a href={% url 'shop:about' %}>About</a> 
+                            </li>                             
+                        </ul>
+
+                        
+                        <!-- <a class="el-content uk-button uk-button-success uk-circle" href="../main/Homepage.html"> Login or Register  </a> -->
+                    
+
+
+
+
+
+
+
+
+
+                          <!-- this will clouse after display user icon -->                             
+                <span class="uk-hidden@m tm-mobile-user-close-icon uk-align-right" uk-toggle="target: #tm-show-on-mobile; cls: tm-show-on-mobile-active"><i class="fas fa-times icon-large"></i></span> 
+                
+                {% if request.user.is_authenticated %}
+
+
+            
+           
+
+
+
+            <ul class="uk-navbar-nav uk-flex-middle"> 
+                <!-- <li> 
+                    <a href="#modal-full" uk-toggle><i class="fas fa-search icon-medium"></i></a> 
+                </li>                                  -->
+                <li> 
+                    <!-- My Courses -->                                     
+                    <a href="#"> <i class="fas fa-play uk-hidden@m"></i> <span class="uk-visible@m"> My Courses</span> </a> 
+                    <div uk-dropdown="pos: top-right ;mode : click; animation: uk-animation-slide-bottom-medium" class="uk-dropdown border-radius-6  uk-dropdown-top-right tm-dropdown-large uk-padding-remove"> 
+                        <div class="uk-clearfix"> 
+                            <div class="uk-float-left"> 
+                                <h5 class="uk-padding-small uk-margin-remove uk-text-bold  uk-text-left">  My Courses </h5> 
+                            </div>                                             
+                            <div class="uk-float-right"> 
+                                <i class="fas fa-check uk-align-right  uk-margin-remove uk-margin-remove-left  uk-padding-small uk-text-small"> Completed 3 / 5 </i> 
+                            </div>                                             
+                        </div>                                         
+                        <hr class=" uk-margin-remove"> 
+                        <div class="uk-padding-smaluk-text-left uk-height-medium"> 
+                            <div class="demo1" data-simplebar> 
+                                <div class="uk-child-width-1-2@s  uk-grid-small uk-padding-small" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100 ;repeat: true" uk-grid> 
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default"> 
+                                                <progress id="js-progressbar" class="uk-progress progress-green uk-margin-small-bottom" value="100" max="100" style="height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/tags/css3.JPG" class="uk-align-left  uk-margin-small-right uk-margin-small-bottom  uk-width-1-3  uk-visible@s" alt=""> 
+                                                <p class="uk-text-bold uk-margin-remove">CSS3 Introduciton </p> 
+                                                <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                                <div class="uk-margin-small"> 
+                                                    <a class="Course-tags uk-margin-small-right   border-radius-6" href="#"> <i class="far fa-play"></i> Course resume</a> 
+                                                </div>                                                                 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default"> 
+                                                <progress id="js-progressbar" class="uk-progress progress-coral  uk-margin-small-bottom" value="15" max="100" style="height: 7px !important;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/tags/html5.jpg" class="uk-align-left  uk-margin-small-right uk-margin-small-bottom  uk-width-1-3  uk-visible@s" alt=""> 
+                                                <p class="uk-text-bold uk-margin-remove">HTML5 Introduciton </p> 
+                                                <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                                <div class="uk-margin-small"> 
+                                                    <a class="Course-tags uk-margin-small-right   border-radius-6" href="#"> <i class="far fa-play"></i> Course resume</a> 
+                                                </div>                                                                 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default"> 
+                                                <progress id="js-progressbar" class="uk-progress uk-margin-small-bottom" value="50" max="100" style="height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/course-4.jpg" class="uk-align-left  uk-margin-small-right uk-margin-small-bottom  uk-width-1-3" alt=""> 
+                                                <p class="uk-text-bold uk-margin-remove">Html Introduciton </p> 
+                                                <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default"> 
+                                                <progress id="js-progressbar" class="uk-progress progress-green uk-margin-small-bottom" value="100" max="100" style="height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/course-5.jpg" class="uk-align-left  uk-margin-small-right uk-margin-small-bottom  uk-width-1-3" alt=""> 
+                                                <p class="uk-text-bold uk-margin-remove">Web Introduciton </p> 
+                                                <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default uk-position-relative"> 
+                                                <progress id="js-progressbar" class="uk-progress  uk-margin-small-bottom" value="30" max="100" style=" height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/course-10.jpg" alt=""> 
+                                                <div class="uk-position-absolute uk-position-medium uk-position-bottom-left uk-text-white"> 
+                                                    <p class="uk-text-bold uk-margin-remove">CSS3 Introduciton </p> 
+                                                    <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                                </div>                                                                 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default uk-position-relative"> 
+                                                <progress id="js-progressbar" class="uk-progress  uk-margin-small-bottom" value="70" max="100" style="height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/course-7.png" alt=""> 
+                                                <div class="uk-position-absolute uk-position-medium uk-position-bottom-left uk-text-white"> 
+                                                    <p class="uk-text-bold uk-margin-remove">Bootstrap Introduciton </p> 
+                                                    <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                                </div>                                                                 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default"> 
+                                                <progress id="js-progressbar" class="uk-progress progress-green uk-margin-small-bottom" value="100" max="100" style="height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/course-8.jpg" alt=""> 
+                                                <div class=""> 
+                                                    <p class="uk-text-bold uk-margin-small-top uk-margin-remove-bottom">Python Introduciton </p> 
+                                                    <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                                </div>                                                                 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                    <div> 
+                                        <a href="#" class="uk-link-reset"> 
+                                            <div class="uk-padding-small uk-card-default"> 
+                                                <progress id="js-progressbar" class="uk-progress  uk-margin-small-bottom" value="80" max="100" style="height: 7px;"></progress>                                                                 
+                                                <img src="/static/shop/assets/images/courses/course-9.jpg" alt=""> 
+                                                <div class=""> 
+                                                    <p class="uk-text-bold uk-margin-small-top uk-margin-remove-bottom"> JavaScript Introduciton </p> 
+                                                    <p class="uk-text-small uk-margin-remove"> by : Mahmoud Khirallah </p> 
+                                                </div>                                                                 
+                                            </div>                                                             
+                                        </a>                                                         
+                                    </div>                                                     
+                                </div>                                                 
+                            </div>                                             
+                        </div>                                         
+                        <hr class=" uk-margin-remove"> 
+                        <h5 class="uk-padding-small uk-margin-remove uk-text-bold uk-text-center"><a class="uk-link-heading" href="#"> See all </a> </h5> 
+                    </div>                                     
+                </li>                                 
+                                            
+                <li> 
+                    <!-- Notivications -->                                     
+                    <a href="#"><i class="fas fa-bell icon-medium"></i></a> 
+                    <div uk-dropdown="pos: top-right ;mode : hover; animation: uk-animation-slide-bottom-small" class="uk-dropdown uk-dropdown-top-right  tm-dropdown-small border-radius-6 uk-padding-remove uk-box-shadow-large angle-top-right"> 
+                        <h5 class="uk-padding-small uk-margin-remove uk-text-bold  uk-text-left"> Notifications </h5> 
+                        <a href="#" class="uk-position-top-right uk-link-reset"> <i class="fas fa-close uk-align-right uk-text-small uk-padding-small"> </i></a> 
+                        <hr class=" uk-margin-remove"> 
+                        <div class="uk-padding-smaluk-text-left uk-height-medium"> 
+                            <div data-simplebar> 
+                                <div class="uk-padding-small" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100 ; repeat: true"> 
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature-4.png" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature-1.png" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature.jpg" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature-2.png" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature-3.png" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature-4.png" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                    <div class="uk-flex-middle uk-grid-small" uk-grid> 
+                                        <div class="uk-width-3-4"> 
+                                            <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
+                                            <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
+                                        </div>                                                         
+                                        <div class="uk-width-1-5 uk-flex-first"> 
+                                            <img src="/static/shop/assets/images/avatures/avature-1.png" alt="Image" class="uk-border-circle"> 
+                                        </div>                                                         
+                                    </div>                                                     
+                                </div>                                                 
+                            </div>                                             
+                        </div>                                         
+                    </div>                                     
+                </li>
+                                            
+                <li> 
+                    <!-- User profile -->                                     
+                    <a href="#"> 
+                           {% for a in backends.associated %}
+                            {% if a.provider == 'facebook' %} 
+                        <img src={{a.extra_data.picture.data.url}} alt="" class="uk-border-circle user-profile-tiny"> 
+                       {% endif %}
+                        {% if a.provider == 'google-oauth2' %} 
+                        <img src={{a.extra_data.picture}} alt="" class="uk-border-circle user-profile-tiny"> 
+
+                        {% endif %}
+                        {% endfor %}
+              
+                    </a>                                     
+                    <div uk-dropdown="pos: top-right ;mode : click ;animation: uk-animation-slide-right" class="uk-dropdown uk-padding-small uk-dropdown-top-right  angle-top-right"> 
+                        <p class="uk-margin-remove-bottom uk-margin-small-top uk-text-bold"> {{ request.user.first_name }} {{ request.user.last_name }} </p> 
+                        <!-- <p class="uk-margin-remove-top uk-text-small uk-margin-small-bottom"> Bankook China</p>  -->
+                        <ul class="uk-nav uk-dropdown-nav"> 
+                          {% if request.user.is_staff %} 
+                           <li> 
+                                <a href={% url 'shop:dashboard' %}> <i class="fas fa-star uk-margin-small-right"></i> <i class="fas fa-star uk-margin-small-right"></i>  ADMIN <i class="fas fa-star uk-margin-small-right"></i>  <i class="fas fa-star uk-margin-small-right"></i> </a> 
+                            </li>     
+                             {% endif %}
+
+                            <li> 
+                                <a href="#"> <i class="fas fa-user uk-margin-small-right"></i> Profile</a> 
+                            </li>                                             
+                                                                   
+                            <!-- <li> 
+                                <a href="#"> <i class="fas fa-share uk-margin-small-right"></i> Invite freind</a> 
+                            </li>                                             
+                            <li> 
+                                <a href="#"> <i class="fas fa-cog uk-margin-small-right"></i> Settings</a> 
+                            </li>                                              -->
+                            <li class="uk-nav-divider"></li>                                             
+                            <li> 
+                                <a href={% url 'shop:logout' %}> <i class="fas fa-sign-out-alt uk-margin-small-right"></i> Log out</a> 
+                            </li>                                             
+                        </ul>                                         
+                    </div>                                     
+                </li>                                 
+            </ul>
+           
+
+
+
+
+
+
+            
+            {% else %}     
+          
+            <ul class="uk-navbar-nav uk-flex-middle"> 
+                <!-- <li> 
+                    <a href="#modal-full" uk-toggle><i class="fas fa-search icon-medium"></i></a> 
+                </li>                                  -->
+                <li> 
+                    <!-- My Courses -->                                     
+                    <!-- <a href="#"> <i class="fas fa-play uk-hidden@m"></i> <span class="uk-visible@m">Login <i class="fas fa-bell icon-medium"></i></span> </a>  -->
+                    <button class="uk-button uk-button-success uk-margin-medium-left admin-btn" href="#login-model" uk-toggle> 
+                        <i class="fas fa-plus"></i> Login or Register
+                    </button>    
+
+                    <div id="login-model" uk-modal>
+                        <div class="uk-modal-dialog uk-width-1-3@m">
+                            <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                            <div class="uk-modal-header uk-background-grey"> 
+                                <h4 class="uk-text-white"> Create an account  </h4> 
+                            </div>  
+            
+                          
+            
+                                <div class="uk-modal-body">
+                                     
+                                        
+                                            <div uk-grid>
+            
+                                                    <label> 
+                                               
+                                                            <span class="checkmark uk-text-small"> You’ll need an account to get to courses</span>
+                                                       
+                                                        </label>   
+                                                </div>
+                                    <div uk-grid>
+            
+                                        <div class="uk-width-expand@m">     
+                                            <a style="background: rgb(4, 93, 209)"  class="uk-button uk-button-large uk-button-primary" href={% url 'social:begin' 'facebook' %} uk-tooltip="title: Log in with your Facebook ; delay: 500 ; pos: top-right ;animation:uk-animation-scale-up"> <i class="fab fa-Facebook icon-small"></i> Continue with Facebook </a>
+       
+                                        </div>
+                                       
+                                    </div>
+                                    <div uk-grid>
+            
+                                      
+                                        <div class="uk-width-expand@m">     
+                                            <a style="background: red" class="uk-button uk-button-large uk-button-primary" href={% url 'social:begin' 'google-oauth2' %}?next={{request.path}} uk-tooltip="title: Log in with your Google ; delay: 500 ; pos: top-right ;animation:uk-animation-scale-up"> <i class="fab fa-google icon-small"></i> Continue with Google </a>
+       
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-modal-footer">
+                                    <label> 
+                                       
+                                        <span class="checkmark uk-text-small"> By signing up, you agree to our </span>
+                                        <a href="#modal-overflow" class="uk-text-bold uk-text-small" uk-toggle > Terms and Conditions  </a> 
+                                    </label>  
+                                </div>
+            
+                         
+                        </div>
+                    </div>
+                    <div id="create-model" uk-modal> 
+
+
+
+                            <div uk-height-viewport="offset-top: true; offset-bottom: true" class="uk-flex uk-flex-middle">
+                                    <div class="uk-width-1-3@m uk-width-1-2@s uk-margin-auto">
+                                        <div class="uk-card-default uk-padding uk-card-small border-radius-6">
+                                            <!-- Login tab -->
+                                            <div id="login" class="tabcontent tab-default-open animation: uk-animation-slide-right-medium"> 
+                                              
+                                                <!-- <p class="uk-text-muted uk-margin-remove-top uk-margin-small-bottom"> Fill blank to log your account</p> -->
+                                                <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                                                <div class="uk-modal-header uk-background-grey"> 
+                                                    <h4 class="uk-text-white"> Log in or Register  </h4> 
+                                                </div>   
+                                                <div class="uk-modal-body">
+                                                
+                                               
+                                                <div class=" uk-flex-middle" uk-grid>
+                                                       
+                                                    
+                                                     
+                                                    </div> 
+                                                    
+                                                    <div class=" uk-flex-middle" uk-grid>
+                                                           
+                                                         
+                                                        </div> 
+                                                    </div>
+                                                    
+                                            </div>
+                        
+                                            <!-- register tab -->
+                                            <div id="register" class="tabcontent animation: uk-animation-slide-left-medium"> 
+                                                <h2 class="uk-text-bold"> Register </h2>
+                                                <p class="uk-text-muted uk-margin-remove-top uk-margin-small-bottom"> Create your free account</p>
+                                                <div class="uk-form-label">Full name</div>
+                                                <div class="uk-inline">
+                                                    <span class="uk-form-icon"><i class="far fa-User icon-medium"></i></span> 
+                                                    <input class="uk-input uk-form-width-large" placeholder="Full name" type="text">
+                                                </div>
+                                                <div class="uk-form-label">Email address</div>
+                                                <div class="uk-inline">
+                                                    <span class="uk-form-icon"><i class="far fa-envelope icon-medium"></i></span> 
+                                                    <input class="uk-input uk-form-width-large" placeholder="name@example.com" type="text">
+                                                </div>
+                                                <form class="uk-child-width-1-2@m uk-grid-small" uk-grid>
+                                                    <div>
+                                                        <div class="uk-form-label">Password </div>
+                                                        <input class="uk-input" placeholder="Password" type="Password" id="password-1">
+                                                    </div>                                     
+                                                    <div>
+                                                        <div class="uk-form-label">Confirm password</div>
+                                                        <input class="uk-input" placeholder="Password" type="Password" id="password-2">
+                                                    </div>                                     
+                                                </form> 
+                                                <div>
+                                                    <label>
+                                                        <input class="uk-checkbox" type="checkbox" data-show-pw="#password-1 ,#password-2"> 
+                                                        <span class="checkmark uk-text-small"> Show passwords </span> 
+                                                    </label>     
+                                                </div>                         
+                                                <div class="uk-margin"> 
+                                                    <label> 
+                                                        <input class="uk-checkbox" type="checkbox" checked> 
+                                                        <span class="checkmark uk-text-small"> I agree to the </span>
+                                                        <a href="#modal-overflow" class="uk-text-bold uk-text-small" uk-toggle > Terms and Conditions  </a> 
+                                                    </label>  
+                                                </div> 
+                                                <div class=" uk-flex-middle" uk-grid>
+                                                    <div class="uk-width-expand@m">     
+                                                        <input class="uk-button uk-button-success" type="submit" class="button" value="Create">                                      
+                                                    </div>
+                                                    <div class="uk-width-auto@m">
+                                                        <span class="uk-text-small"> Already registered? <a href="#" class="tablinks uk-text-bold" onclick="openTabs(event, 'login')"> Sign in </a>  </span>
+                                                    </div>
+                                                </div>                                
+                                            </div> 
+                                            
+                                            <!-- forget tab -->
+                                            <div id="forget" class="tabcontent animation: uk-animation-slide-bottom-medium"> 
+                                                <h2 class="uk-text-bold"> Forget password  </h2>
+                                                <p class="uk-text-muted uk-margin-remove-top uk-margin-small-bottom">to reset your password fill inter your email</p>
+                                                <div>
+                                                    <div class="uk-form-label">Email address</div>
+                                                    <div class="uk-inline">
+                                                        <span class="uk-form-icon"><i class="fas fa-lock icon-medium"></i></span> 
+                                                        <input class="uk-input uk-form-width-large" placeholder="name@example.com" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="uk-margin">  
+                                                    <input class="uk-button uk-button-success" type="submit" class="button" value="Reset password"> 
+                                                </div>
+                                                <span class="uk-text-small">
+                                                    Not registered?  
+                                                    <a href="#" class="tablinks uk-text-bold" onclick="openTabs(event, 'register')"> Create  </a>
+                                                    Or
+                                                    <a href="#" class="tablinks uk-text-bold" onclick="openTabs(event, 'login')"> Sign in  </a> 
+                                                </span>
+                                                                              
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                    
+                    </div>  
+                    
+                    
+                         <!-- Terms model-->  
+                        <div id="modal-overflow" uk-modal> 
+                            <div class="uk-modal-dialog"> 
+                            
+                                <div class="uk-modal-body" uk-overflow-auto> 
+                                        <h2 class="uk-text-bold"> Terms & Services  </h2>
+                                        <p class="uk-text-muted uk-margin-remove-top uk-margin-small-bottom">to reset your password fill inter your email</p>
+                                    
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+                                </div> 
+                                <div class="uk-modal-footer uk-text-right"> 
+                                    <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button> 
+                                </div> 
+                            </div>
+                        </div>
+
+
+
+
+
+
+                </li>                                 
+                                            
+                                                 
+            </ul>   
+            {% endif %}
+                    </div>
+
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div style="height: 90px !important" class="uk-section-default" tm-header-transparent="dark" tm-header-transparent-placeholder="">
+        <div uk-img class="uk-background-norepeat uk-background-center-center uk-background-fixe uk-section uk-section-large uk-padding-remove-top uk-flex uk-flex-middle uk-background-cover" style="box-sizing: border-box; ">
+            <div class="uk-width-1-1 uk-margin-xlarge-top">
+                <div class="uk-container">
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+   
+     
+
+
+        
+        {% block content %}
+
+
+        {% endblock content %}
+       
+        <!-- footer -->         
+        <div class="uk-section-small uk-margin-medium-top"> 
+            <hr class="uk-margin-remove"> 
+            <div class="uk-container uk-align-center uk-margin-remove-bottom uk-position-relative"> 
+                <div uk-grid> 
+                    <div class="uk-width-1-3@m uk-width-1-2@s uk-first-column"> 
+                        <a href="pages-about.html" class="uk-link-heading uk-text-lead uk-text-bold"> <i class="fas fa-graduation-cap"></i>  Eduneer</a> 
+                        <div class="uk-width-xlarge tm-footer-description">EDUNEER is the first website provides online courses for engineers. We believe in our ability to change
+                                the education methods in Egypt and the Arab nations to improve the quality of the Arab engineers.</div>                         
+                    </div>                     
+                    <div class="uk-width-expand@m uk-width-1-2@s"> 
+                                           
+                    </div>                     
+                    <div class="uk-width-expand@m uk-width-1-2@s"> 
+                        <ul class="uk-list  tm-footer-list"> 
+                            <li> 
+                                <a href="#"> Browse Our Course </a> 
+                            </li>                             
+                            <li> 
+                                <a href="#"> Talks </a> 
+                            </li>                             
+                            <li> 
+                                <a href="#"> News/Articles</a> 
+                            </li>                             
+                                                        
+                        </ul>                       
+                    </div>                     
+                    <div class="uk-width-expand@m uk-width-1-2@s"> 
+                        <ul class="uk-list tm-footer-list"> 
+                            <li> 
+                                <a href="#"> About us </a> 
+                            </li>                             
+                            <li> 
+                                <a href="#"> Contact Us </a> 
+                            </li>                             
+                            <li> 
+                                <a href="#"> Privacy Policy   </a> 
+                            </li>                             
+                                                      
+                        </ul>                         
+                    </div>                     
+                </div>                 
+                <hr>
+                <div class="uk-margin-small" uk-grid> 
+                    <div class="uk-width-1-2@m uk-width-1-2@s uk-first-column"> 
+                        <p class="uk-text-small"><i class="fas fa-copyright"></i> 2019 <span class="uk-text-bold">Eduneer</span>. All rights reserved.</p> 
+                    </div>                     
+                    <div class="uk-width-1-3@m uk-width-1-2@s"> 
+                        <!-- <a href="#" class="uk-icon-button uk-link-reset" uk-tooltip="title: Our Youtube Chanal; pos: top-center"><i class="fab fa-youtube" style=" color: #fb7575  !important;"></i></a> -->
+                        <a href="#" class="uk-icon-button uk-link-reset" uk-tooltip="title: Our Facebook; pos: top-center"><i class="fab fa-Facebook" style=" color: #9160ec  !important;"></i></a>
+                        <!-- <a href="#" class="uk-icon-button uk-link-reset" uk-tooltip="title: Our Instagram; pos: top-center"><i class="fab fa-Instagram" style=" color: #dc2d2d  !important;"></i></a> -->
+                        <a href="#" class="uk-icon-button uk-link-reset" uk-tooltip="title: Our linkedin; pos: top-center"><i class="fab fa-linkedin " style=" color: #6949a5  !important;"></i></a>
+                        <!-- <a href="#" class="uk-icon-button uk-link-reset" uk-tooltip="title: Our google-plus; pos: top-center"><i class="fab fa-google-plus" style=" color: #f77070 !important;"></i></a> -->
+                        <a href="#" class="uk-icon-button uk-link-reset" uk-tooltip="title: Our Twitter; pos: top-center"><i class="fab fa-twitter" style=" color: #6f23ff !important;"></i></a>
+                    </div>                     
+                </div>                 
+            </div>             
+        </div>         
+        <!-- footer  end -->         
+        <!-- app end -->         
+        <!-- button scrollTop -->         
+        <button id="scrollTop" class="uk-animation-slide-bottom-medium"> 
+            <a href="#" class="uk-text-white" uk-totop uk-scroll></a> 
+        </button>         
+        <!--  Night mood -->         
+        <script>
+        (function (window, document, undefined) {
+          'use strict';
+          if (!('localStorage' in window)) return;
+          var nightMode = localStorage.getItem('gmtNightMode');
+          if (nightMode) {
+              document.documentElement.className += ' night-mode';
+          }
+        })(window, document);
+
+
+        (function (window, document, undefined) {
+
+          'use strict';
+
+          // Feature test
+          if (!('localStorage' in window)) return;
+
+          // Get our newly insert toggle
+          var nightMode = document.querySelector('#night-mode');
+          if (!nightMode) return;
+
+          // When clicked, toggle night mode on or off
+          nightMode.addEventListener('click', function (event) {
+              event.preventDefault();
+              document.documentElement.classList.toggle('night-mode');
+              if ( document.documentElement.classList.contains('night-mode') ) {
+                  localStorage.setItem('gmtNightMode', true);
+                  return;
+              }
+              localStorage.removeItem('gmtNightMode');
+          }, false);
+
+        })(window, document);
+
+        // Preloader
+        var spinneroverlay = document.getElementById("spinneroverlay");
+        window.addEventListener('load', function(){
+            spinneroverlay.style.display = 'none';
+        });
+
+         //scrollTop
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};        
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("scrollTop").style.display = "block";
+            } else {
+                document.getElementById("scrollTop").style.display = "none";
+            }
+        }        
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        </script>   
+        
+        
+        <script>
+                // Listen for clicks in the document
+                document.addEventListener('click', function (event) {
+        
+                    // Check if a password selector was clicked
+                    var selector = event.target.getAttribute('data-show-pw');
+                    if (!selector) return;
+        
+                    // Get the passwords
+                    var passwords = document.querySelectorAll(selector);
+        
+                    // Toggle visibility
+                    Array.from(passwords).forEach(function (password) {
+                        if (event.target.checked === true) {
+                            password.type = 'text';
+                        } else {
+                            password.type = 'password';
+                        }
+                    });
+                }, false);
+                </script>
+    </body>     
+</html>

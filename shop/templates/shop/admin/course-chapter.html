@@ -1,0 +1,376 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+{% load my_tags %} 
+
+{% block title %}
+Course Sections
+{% endblock %}
+
+
+{% block content %}
+<div class="admin-content-inner ">
+    <!-- navbar -->
+
+
+
+
+
+
+
+    <div class="admin-content-inner">
+
+        <div class="uk-margin uk-flex-inline uk-flex-middle">
+            <!-- <i class="fas fa-star icon-large uk-margin-right"></i> -->
+            <h2 class="uk-margin-remove"> {{course.val.title}} </h2>
+            <button class="uk-button uk-button-small uk-button-grey uk-margin-medium-left admin-btn uk-text-uppercase"
+                href="#edit-model"
+                uk-tooltip="title: Edit Primary Info of this course ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle>
+                <i class="fas fa-plus"></i> Edit Primary Info
+            </button>
+        </div>
+        <!-- model -->
+        <div id="edit-model" uk-modal>
+            <div class="uk-modal-dialog uk-width-2-3@m">
+                <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>
+                <div class="uk-modal-header uk-background-grey">
+                    <h4 class="uk-text-white"> Edit Course Info </h4>
+                </div>
+
+
+                <form>
+
+                    <div class="uk-modal-body">
+                        <div uk-grid>
+
+                            <div class="uk-width">
+
+                                <div class="uk-margin">
+                                    <label> Title </label>
+                                    <textarea class="uk-textarea" required name="title" rows="2">{{course.val.title}} </textarea>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class=""> Short Description </div>
+                                    <textarea required name="sdescription" class="uk-textarea"
+                                        rows="2">{{course.val.sdescription}}</textarea>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class=""> Price </div>
+                                    <input required class="uk-input" name="price" type="number" min="0.00"
+                                        max="10000.00" step="0.01" value={{course.val.price}} />
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class=""> Category </div>
+
+                                    <select class="uk-input" id="selectbox1" name='category'>
+                                        {% for car in categories.each  %}
+                                        <option value='-1'> Select a category</option>
+                                        <option {% ifequal car.val.name  course.val.category %} selected
+                                            {% endifequal %} value='{{ car.val.name }}'>
+
+                                            {{ car.val.name }}
+
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class=""> Long Description </div>
+                                    <textarea required name="ldescription" class="uk-textarea froala" rows="5"
+                                        placeholder="Entire description of the course">{{course.val.ldescription}}</textarea>
+
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class=""> What You'll Learn </div>
+
+                                    <textarea required name="learn" class="uk-textarea froala" rows="5"
+                                        placeholder="Name of the course">{{course.val.learn}} </textarea>
+
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <div class=""> Requirements </div>
+                                    <textarea required name="requirements" class="uk-textarea froala" rows="5"
+                                        placeholder="A sub-title or short description">{{course.val.requirements}} </textarea>
+
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-grey uk-modal-close" type="button">Cancel</button>
+                        <button class="uk-button uk-button-success" type="button">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="uk-margin uk-flex-inline uk-flex-middle">
+
+            <h4 class="uk-margin-remove"> Sections </h4>
+            <button class="uk-button uk-button-success uk-margin-medium-left admin-btn uk-text-uppercase"
+                href="#create-model"
+                uk-tooltip="title:  Add New Sections ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle>
+                <i class="fas fa-plus"></i> add new
+            </button>
+        </div>
+        <!-- model -->
+        <div id="create-model" uk-modal>
+            <div class="uk-modal-dialog uk-width-1-3@m">
+                <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>
+                <div class="uk-modal-header uk-background-grey">
+                    <h4 class="uk-text-white"> Add New Section</h4>
+                </div>
+
+                <form action={% url 'shop:addchapter'  %} method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                    <div class="uk-modal-body">
+                        <div uk-grid>
+
+                            <div class="uk-width">
+                                <input type="hidden" value="{{course.key}}" name="id" />
+                                <div class="uk-margin">
+                                    <label> Title </label>
+                                    <textarea class="uk-textarea" name="chapterTitle" rows="2"
+                                        placeholder="Title of the chapter"></textarea>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                        <button class="uk-button uk-button-primary" type="submit">Save</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        {% if chapters.each %}
+        {% for chapter in chapters.each %}
+      
+        <div style="position: relative; width: 100%">
+        <ul  uk-accordion class="uk-accordion">
+
+
+            <li style="width: 90%; float: left" class="tm-course-lesson-section uk-background-default">
+                    <a class="uk-accordion-title uk-padding-small" href="#">
+
+                        <h4 class="uk-margin-remove">  {{chapter.val.title}} </h4> 
+                    </a> 
+
+              
+                
+                
+                   
+              
+
+                
+                <div  class="uk-accordion-content uk-margin-remove-top">
+                    <div class="tm-course-section-list">
+                        <ul>
+                            {% if chapter.val.lessons  %}
+                            {% for l in chapter.val.lessons  %}
+
+
+
+                            <li>
+                                <a href={% url 'shop:courselesson' course.key chapter.key %} class="uk-link-reset">
+                                    <!-- Play icon  -->
+                                    <span class="uk-icon-button icon-play"> <i class="fas fa-play icon-small"></i>
+                                    </span>
+                                    <!-- Course title  -->
+                                    <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">
+                                        {% getLessonTitle course.key chapter.key l %}
+                                      
+                                     </div>
+                                    <!-- preview link -->
+                                </a>
+                                {% comment %} <a class="uk-link-reset uk-margin-large-right uk-position-center-right uk-padding-small uk-text-small uk-visible@s"
+                                    href="#preview-video-1" uk-toggle> <i
+                                        class="fas fa-play icon-small uk-text-grey"></i> Preview </a> {% endcomment %}
+                                <!-- time -->
+                                <span class="uk-position-center-right time uk-margin-right"> <i
+                                        class="fas fa-clock icon-small"></i>  {% getLessonDuration course.key chapter.key l %}</span>
+                            </li>
+
+                            {% endfor %}
+                            {% else %}
+
+
+                            <li>
+
+
+
+                                <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">No lessons
+                                    added yet for this section </div>
+                                <!-- preview link -->
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <!-- <div style="width: 10%"> -->
+                    <a style="margin-top: 0px" class="uk-button uk-button-large uk-button-grey "
+                    href={% url 'shop:adminCourseNewSubsection' course.key chapter.key  %}
+                    uk-tooltip="title: Go to section details ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle>
+                    <i class="fas fa-pen"></i> 
+            </a>
+            <!-- </div> -->
+           
+
+
+
+         
+
+        </ul>
+        </div>
+
+        {% endfor %}
+    
+
+        {% endif %}
+
+     
+      
+        <div class="uk-card-default uk-width-2-5 uk-card-hover card-tags uk-card-small">
+
+                <div class="uk-margin uk-flex-inline uk-flex-middle">
+
+                        <h4 class="uk-margin-remove"> Cover Image </h4>
+                        <button class="uk-button uk-button-grey uk-margin-medium-left admin-btn uk-text-uppercase"
+                        href="#cover-model"
+                            uk-tooltip="title:  Edit the cover image  ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle>
+                            <i class="fas fa-pen"></i> edit
+                        </button>
+                    </div>
+           
+
+                    {% if course.val.cover %}
+
+
+
+
+            <div class="uk-card-body">
+                  
+                <div class="uk-width-3-5 uk-padding-remove uk-flex uk-flex-middle">
+                        
+                    <img alt="" class="uk-align-right" src="{{course.val.cover}}">
+                </div>
+            </div>
+
+
+       
+        {% else %}
+
+
+
+
+  
+
+           
+           
+
+
+
+
+
+                <div class="uk-card-body">
+              
+                    <div class="uk-width-3-5 uk-padding-remove uk-flex uk-flex-middle">
+                            
+                        <img alt="" class="uk-align-right" src="/static/shop/assets/images/cover.png">
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        {% endif %}
+
+
+         <div id="cover-model" uk-modal>
+                <div class="uk-modal-dialog uk-width-1-3@m">
+                    <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>
+                    <div class="uk-modal-header uk-background-grey">
+                        <h4 class="uk-text-white"> select cover </h4>
+                    </div>
+
+
+                    <form action={% url 'shop:editcover' %} method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="uk-modal-body">
+
+                            <input type="hidden" value="{{course.key}}" name="courseid" />
+                            <input id="cover" name="cover" type="file" multiple accept="image/*">
+
+                         
+
+                        </div>
+
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button class="uk-button uk-button-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+
+</div>
+
+
+
+
+<script>
+// var _URL = window.URL || window.webkitURL;
+// $("#cover").change(function (e) {
+//     var file, img;
+//     if ((file = this.files[0])) {
+//         img = new Image();
+//         img.onload = function () {
+//             alert(this.width + " " + this.height);
+//         };
+//         img.src = _URL.createObjectURL(file);
+//     }
+// });
+</script>
+
+
+
+
+{% endblock content %}

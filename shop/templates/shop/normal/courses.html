@@ -1,0 +1,242 @@
+{% extends "shop/normal/base.html" %}
+{% load static %}
+
+
+{% block title %}
+Courses
+{% endblock %}
+
+
+{% block content %}
+
+
+<main>
+    <!--   feature bg -->
+    <div class="hero-feature-bg"> </div>
+    <div class="uk-container">
+        <div class="uk-container">
+            <div class="uk-position-relative uk-margin-medium-top none-border uk-clearfix"> 
+                <div class="uk-float-left"> 
+                    <!-- <h1 class="uk-text-white">Courses</h1> -->
+                    <h4 class="uk-text-white uk-margin-remove uk-text-light"> Featured Courses </h4>
+                </div>                         
+                                     
+            </div>
+        </div>
+       
+        <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
+            <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid"> 
+                
+                    {% if courses.each %}
+
+                    {% for course in courses.each|slice:":6" %}
+                    <!-- <h3 class="uk-margin-top"> {{course.val.title}} </h3> 
+                    <h5 class="uk-margin-remove"> Category : {{course.val.category}} </h5> 
+                    <h5 class="uk-margin-small uk-text-muted"> Short Description</h5> 
+                    <p> {{course.val.sdescription}} </p>  -->
+                <li class="uk-active">
+                    <div class="uk-card-default uk-card-hover card-tags uk-card-small">
+                        <div class="uk-padding-small card-tags-header" style="background:#313131">
+                            <div uk-grid>
+                               
+                                {% if course.val.cover %}
+                                <img src="{{course.val.cover}}" style="width:100%;height:35%" >
+                                {% else %}
+                                <img src="/static/shop/assets/images/cover.png" style="width:100%;height:35%" >
+                                    
+                                {% endif %}
+                                <span style="position: absolute;top:0%;background:linear-gradient(to right, #313131, #3131314e);width:85%" >
+                                   
+                                    <div style="height:205px" class="uk-width-3-5"> 
+                                        <h3 class="uk-light uk-margin-small-top">  {{course.val.title}} </h3>
+                                        <!-- <h6 class="uk-light uk-margin-small-top">{% if lessons %}  {{lessons.each|length}}  {% endif %}lessons ((num)) lessons</h6> -->
+
+                                        <span>  </span>
+                                    </div>
+                                 
+                                </span> 
+                            </img>
+                            </div>                                 
+                        </div>
+                        <div class="uk-card-body"> 
+                            <!-- <p> Learn the fundamentals of JavaScript, one of the most popular programming languages... </p>  -->
+                            <p> {{course.val.sdescription}}  </p> 
+                            <div class="uk-clearfix">
+                                <div class="uk-float-left"> 
+                                    <a class="card-span-ex" href={% url 'shop:coursedetail' course.key %}> Explore </a>
+                                </div>
+                                <div class="uk-float-right"> 
+                                    <!-- <a class="Course-tags" href="#"> EGP {{course.val.price}}</a>  -->
+                                </div>
+                            </div>
+                        </div>                             
+                    </div>
+                    <div class="buttom-shadow1"></div>
+                    <div class="buttom-shadow2"></div>                       
+                </li>
+                {% endfor %}      
+
+                {% else %}
+                
+                             
+                                <div class="uk-padding-small" uk-grid> 
+                                 <p>Coming soon</p>                         
+                                </div>   
+                              
+                                    
+                                {% endif %}
+            </ul>
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-next uk-slider-item="next"></a>
+            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
+                <li uk-slider-item="0" class="">
+                    <a href="#"></a>
+                </li>                         
+            </ul>
+        </div>
+    </div>
+
+
+   
+
+   
+     <!-- All courses -->
+   
+     <div class="uk-container uk-margin-top" id="more"> 
+            <div class="uk-container">
+                    <div class="uk-position-relative uk-margin-medium-top none-border uk-clearfix"> 
+                        <div class="uk-float-left"> 
+                                <h3 class="uk-margin-remove-bottom"> All Courses</h3>
+                              
+                        </div>                         
+                                             
+                    </div>
+                </div>
+        <!-- <ul class="uk-tab">
+            <li class="uk-active">
+                <a href="#">Web development</a>
+            </li>
+            <li>
+                <a href="#">Mobile App</a>
+            </li>
+            <li>
+                <a href="#">Softwares</a>
+            </li>
+            <li>
+                <a href="#">General</a>
+            </li>
+        </ul> -->
+
+        <div class="uk-clearfix boundary-align uk-margin"> 
+                <!-- <div class="uk-float-left uk-visible@m"> 
+                    <ul class="uk-tab">
+                        <li class="uk-active">
+                            <a href="#">Software Development</a>
+                        </li>
+                        <li>
+                            <a href="#">Mechanical Engineering</a>
+                        </li> 
+                        <li>
+                            <a href="#">Electrical Engineering</a>
+                        </li>
+                      
+                    </ul>
+                </div>                              -->
+                <!-- <div class="uk-float-right uk-margin-top"> 
+                   <span class="uk-text-small uk-text-uppercase"> Sort by :</span> 
+                    <button class="uk-button uk-button-default uk-background-default uk-button-small" type="button" uk-tooltip="title: Sort; pos: top-right"> Newest  </button>                                 
+                    <div uk-dropdown="pos: top-right ;mode : click" class="uk-dropdown  uk-dropdown-top-right" style="left: -141px; top: -267px;"> 
+                        <ul class="uk-nav uk-dropdown-nav"> 
+                                                                
+                            <li> 
+                                <a href="#">Date Published: Old</a> 
+                            </li> 
+                            <li> 
+                                <a href="#">Date Published: New</a> 
+                            </li>    
+                            <li class="uk-nav-divider"></li>                                       
+                            <li> 
+                                <a href="#">Price: Highest to Lowest </a> 
+                            </li>                                         
+                            <li> 
+                                <a href="#">Price: Lowest to Highest </a> 
+                            </li>                                         
+                                                                  
+                           
+                                                                  
+                        </ul>                                     
+                    </div>
+                </div>                              -->
+            </div>
+     
+        <div class="uk-margin uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 200" uk-grid> 
+                {% if courses.each %}
+
+                {% for course in courses.each %}   
+            <div> 
+                        <div class="uk-card-default uk-card-hover card-tags uk-card-small">
+                                <div class="uk-padding-small card-tags-header" style="background:#313131">
+                                    <div uk-grid>
+                                        <div class="uk-width-3-5"> 
+                                            <h3 class="uk-light uk-margin-small-top"> {{course.val.title}}</h3>
+                                            <!-- <h6 class="uk-light uk-margin-small-top">12 Course 12 Discussion</h6> -->
+                                        </div>
+                                        <div class="uk-width-2-5 uk-padding-remove uk-flex uk-flex-middle"> 
+                                            
+                                            {% if course.val.cover %}
+                                            <img src="{{course.val.cover}}" style="width:100%;height:35%" >
+                                            {% else %}
+                                            <img src="/static/shop/assets/images/cover.png" style="width:100%;height:35%" >
+                                                
+                                            {% endif %}
+                                        </div>
+                                    </div>                                 
+                                </div>
+                                <div class="uk-card-body"> 
+                                    <p> {{course.val.sdescription}} </p> 
+                                    <div class="uk-clearfix">
+                                        <div class="uk-float-left"> 
+                                                <a class="card-span-ex" href={% url 'shop:coursedetail' course.key %}> Explore </a>
+                                        </div>
+                                        <!-- <div class="uk-float-right"> 
+                                            <a class="Course-tags Course-tags-more" href="#"> </a> 
+                                        </div> -->
+                                    </div>
+                                </div>                             
+                            </div>
+                            <div class="buttom-shadow1"></div>
+                            <div class="buttom-shadow2"></div>                         
+                </div>                     
+                {% endfor %}      
+
+                {% endif %}                  
+            </div>  
+        <!-- pagination-->
+        <!-- <ul class="uk-pagination uk-flex-center uk-margin-medium">
+            <li class="uk-active">
+                <span>1</span>
+            </li>
+            <li>
+                <a href="#">2</a>
+            </li>
+            <li>
+                <a href="#">3</a>
+            </li>
+            <li>
+                <a href="#">4</a>
+            </li>
+            <li>
+                <a href="#">5</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-ellipsis-h uk-margin-small-top"></i></a>
+            </li>
+            <li>
+                <a href="#">12</a>
+            </li>
+        </ul> -->
+    </div>
+
+</main> 
+
+{% endblock content %}

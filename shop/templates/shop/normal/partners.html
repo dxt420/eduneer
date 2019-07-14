@@ -1,0 +1,75 @@
+{% extends "shop/normal/base.html" %}
+{% load static %}
+
+
+{% block title %}
+Partners
+{% endblock %}
+
+
+{% block content %}
+
+
+<main>
+    <div data-src="/static/shop/assets/images/backgrounds/help_background.svg" uk-img class="uk-height-large uk-background-norepeat  uk-background-center-center uk-background-image@s uk-background-fixe uk-section uk-section-large uk-padding-remove-top uk-flex uk-flex-middle">
+        <div class="uk-width-1-1 uk-container uk-margin-large-top">
+            <div class="uk-container-xsmall uk-margin-auto uk-text-center">
+                <h2>Our Partners</h2>
+                <div class="uk-margin">
+                    <h3>Sub heading</h3>
+                </div>
+            </div>
+        </div>                 
+    </div>
+    <div class="uk-container-small uk-margin-auto">
+        <div class="uk-margin uk-grid-match uk-child-width-1-12@m uk-child-width-1-12@s" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 200" uk-grid> 
+            <div> 
+                    <!-- <div class="uk-card-default uk-card-hover card-tags uk-card-small">
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-html5 info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">  Html templates   </p> </a> 
+                        </div>              
+                    </div> -->
+                                
+                    
+                    <div class="uk-child-width-1-4 uk-grid-collapse  uk-text-small uk-text-center uk-flex-center" uk-grid>
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-html5 info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">  Html templates   </p> </a> 
+                        </div>
+                      
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-php info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">    PHP Scripts  </p> </a>
+                        </div>
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-html5 info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">  Html templates   </p> </a> 
+                        </div>
+                      
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-php info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">    PHP Scripts  </p> </a>
+                        </div>
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-html5 info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">  Html templates   </p> </a> 
+                        </div>
+                      
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-php info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">    PHP Scripts  </p> </a>
+                        </div>
+
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-php info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">    PHP Scripts  </p> </a>
+                        </div>
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-html5 info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">  Html templates   </p> </a> 
+                        </div>
+                      
+                        <div> 
+                            <a href="#" class="uk-link-reset"> <i class="fab fa-php info-big-icon"></i> <p class="uk-margin-small-top uk-margin-remove-bottom">    PHP Scripts  </p> </a>
+                        </div>
+                    </div>    
+                              
+            </div>                     
+                              
+        </div> 
+    </div>
+</main>   
+
+{% endblock content %}

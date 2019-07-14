@@ -1,0 +1,93 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+
+
+{% block title %}
+New Talk
+{% endblock %}
+
+
+{% block content %}
+
+<div class="admin-content-inner "> 
+
+        <!-- navbar -->             
+        <nav class="uk-navbar uk-container-small uk-margin-auto"> 
+                <div class="uk-navbar-left "> 
+                    <ul class="uk-navbar-nav"> 
+                        <li class="uk-active"> 
+                            <a href="admin.html">Manage Talks  &nbsp;&nbsp;&nbsp;></a>  
+                        </li>                         
+                        <li> 
+                            <a href="admin-scripts.html"> New Talk &nbsp;&nbsp;&nbsp;</a> 
+                        </li>   
+                   
+                    </ul>                     
+                </div>                 
+                          
+            </nav>  
+    <div class="uk-margin-medium uk-card-small uk-card-default uk-container-small uk-margin-auto "> 
+      
+      
+        <div class="uk-card-header uk-text-bold">
+            <i class="fas fa-user uk-margin-small-right"></i> Primary Info
+        </div>                     
+        <div class="uk-card-body "> 
+            <div uk-grid> 
+                                      
+                <div class="uk-width"> 
+                    <form class="uk-grid-small" uk-grid> 
+                        <div class="uk-width-1-2"> 
+                            <div class=""> Title  </div>                                         
+                          
+                            <textarea class="uk-textarea" rows="2" placeholder="Name of the course"></textarea>  
+
+                        </div>                                     
+                        <div class="uk-width-1-2"> 
+                            <div class=""> Short Description   </div>                                         
+                            <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                            <textarea class="uk-textarea" rows="2" placeholder="A sub-title or short description"></textarea>  
+                        </div>                                     
+                      
+                        <div class="uk-width-2-3"> 
+                            <div class="">  About Talk     </div>                                         
+                            <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                            <textarea class="uk-textarea" rows="4" placeholder="A sub-title or short description"></textarea>  
+                        </div>   
+                        <div class="uk-width-1-2"> 
+                            <div class="">  Creator Name     </div>                                         
+                            <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                            <textarea class="uk-textarea" rows="2" placeholder="A sub-title or short description"></textarea>  
+                        </div>   
+
+                        <div class="uk-width-1-2"> 
+                            <div class="">  About Creator     </div>                                         
+                            <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                            <textarea class="uk-textarea" rows="3" placeholder="A sub-title or short description"></textarea>  
+                        </div>   
+                      
+                                                       
+                    </form>    
+                    <div class="uk-width-1-2"> 
+                        <div class=""> Featured Cover Image  </div>                                         
+                        <form action="/file-upload" class="dropzone  id=" y-awesome-dropzone""> 
+                            <div class="fallback"> 
+                                <input name="file" type="file"/> 
+                            </div>                                             
+                        </form>   
+                        <!-- <p>Recomend size 50 x 50</p> -->
+                    </div>                               
+                </div>                             
+            </div>                         
+        </div>   
+        
+      
+
+
+    </div>    
+    
+    <div class="uk-margin-medium uk-container-small uk-margin-auto">
+    <input class="uk-button uk-button-grey  uk-margin" type="submit" class="button" value="Proceed with talk creation"> 
+</div>
+</div>   
+{% endblock content %}

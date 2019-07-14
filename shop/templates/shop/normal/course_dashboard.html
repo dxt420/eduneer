@@ -1,0 +1,217 @@
+{% extends "shop/normal/base.html" %}
+{% load static %}
+{% load my_tags %}
+
+
+{% block title %}
+Course Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+
+   <main>
+                <div class="course-dhashboard-2 topic1">
+                    <div class="uk-container course-intro-content uk-padding-remove-bottom">
+                        <div uk-grid> 
+                            <div class="uk-width-1-3@m">
+                                <div class="uk-inline uk-visible-toggle"> 
+                                        {% if course.val.cover %}
+                                       
+                                        <img src="{{course.val.cover}}" alt=""> 
+                                    {% else %}
+                                        <img src="/static/shop/assets/images/cover.png" > 
+                                    {% endif %}
+                                    
+                                    <!-- <a class="uk-position-absolute uk-position-center uk-invisible-hover uk-link-reset" href="#preview-video-1" uk-toggle> 
+                                        <i class="fas fa-play-circle" style="font-size: 60px"></i> 
+                                        <br>
+                                        Preview
+                                    </a> -->
+                                </div>
+                            </div>
+                            <div class="uk-width-2-3@m info"> 
+                                <h2 class="uk-light uk-text-uppercase uk-text-bold uk-text-white"> {{course.val.title}}   </h2>
+                                <p class="uk-light uk-text-bold">{{course.val.sdescription}} </p>
+                                <!-- students images  -->                             
+                                <!-- <div class="avatar-group uk-margin" uk-scrollspy="target: > img; cls:uk-animation-slide-right; delay: 200">
+                                    <img src="/static/shop/assets/images/avatures/avature-1.png" alt=""> 
+                                    <img src="/static/shop/assets/images/avatures/avature.jpg" alt=""> 
+                                    <img src="/static/shop/assets/images/avatures/avature-2.png" alt=""> 
+                                    <span class="uk-text-bold uk-light">  5134 + students enrolled </span> 
+                                </div> -->
+                                <div class="uk-grid-small uk-width-2-3@m" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <a class="uk-button uk-button-grey uk-float-left" href="Course-lesson.html" uk-tooltip="title: Continue with this course now  ; delay: 300 ; pos: top ;animation:	uk-animation-slide-bottom-small"> Continue</a>
+                                    </div>
+                                    <!-- <div class="uk-width-expand"> 
+                                        <span class="uk-light uk-text-small uk-text-bold"> My progress </span>
+                                        <progress id="js-progressbar" class="uk-progress progress-green uk-margin-small-bottom uk-margin-small-top" value="50" max="100" style="height: 8px;"></progress>
+                                    </div> -->
+                                </div>                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- navigation-->
+                <ul class="uk-tab uk-flex-center  uk-margin-remove-top uk-background-default  uk-sticky" cls-active="uk-background-muted" uk-sticky="animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up ; media: @s;offset:85" uk-tab>
+                    <li aria-expanded="true" class="uk-active">
+                        <a href="#"> Course Sections  </a>
+                    </li>                 
+                    <!-- <li>
+                        <a href="#"> Discussions </a>
+                    </li>                 
+                    <li>
+                        <a href="#"> Exercise  </a>
+                    </li> -->
+                    <li>
+                        <a href="#">  About </a>
+                    </li>
+                    <!-- <li>
+                        <a href="#"> Reveiws  </a>
+                    </li>                  -->
+                </ul>
+                <ul class="uk-switcher uk-margin uk-padding-small uk-container-small uk-margin-auto  uk-margin-medium-top"> 
+                    <!-- Course-Videos tab  -->
+                    <li class="uk-active">
+                        <ul uk-accordion class="uk-accordion"> 
+                                {% if chapters.each %}
+                                {% for chapter in chapters.each %}
+                            <li class="uk-open tm-course-lesson-section uk-background-default"> 
+                                <a class="uk-accordion-title uk-padding-small" href="#">
+                                    <h4 class="uk-margin-remove"> Introduction to basic HTML</h4> </a> 
+                                <div class="uk-accordion-content uk-margin-remove-top"> 
+                                    <div class="tm-course-section-list">
+                                        <ul> 
+                                                {% if chapter.val.lessons  %}
+                                                {% for l in chapter.val.lessons  %}
+                                            <li>
+                                                <a href={% url 'shop:courselesson' course.key chapter.key %} class="uk-link-reset"> 
+                                                    <!-- Play icon  -->                                                     
+                                                    <span class="uk-icon-button icon-play"> <i class="fas fa-play icon-small"></i> </span>
+                                                    <!-- Course title  -->                                                     
+                                                    <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">{% getLessonTitle course.key chapter.key l %}  </div>
+                                                    <!-- preview link -->
+                                                </a>
+                                                {% comment %} <a class="uk-link-reset uk-margin-large-right uk-position-center-right uk-padding-small uk-text-small uk-visible@s" href="#preview-video-1" uk-toggle> <i class="fas fa-play icon-small uk-text-grey"></i> Preveiw  </a> {% endcomment %}
+                                                <!-- time -->
+                                                <span class="uk-position-center-right time uk-margin-right"> <i class="fas fa-clock icon-small"></i>  {% getLessonDuration course.key chapter.key l %}</span>
+                                            </li>                                             
+                                            {% endfor %}
+                                            {% endif %}                                         
+                                        </ul>
+                                    </div>                                 
+                                </div>                             
+                            </li>                         
+                            {% endfor %}
+                            {% endif %}                    
+                        </ul>
+                        <!-- Model  Preview videos-->
+                        <div id="preview-video-1" uk-modal> 
+                            <div class="uk-modal-dialog uk-margin-auto-vertical"> 
+                                <button class="uk-modal-close-outside" type="button" uk-close></button>                             
+                                <div class="video-responsive">
+                                    <iframe src="https://www.youtube.com/embed/nOCXXHGMezU" class="uk-padding-remove" uk-video="automute: true" frameborder="0" allowfullscreen uk-responsive></iframe>
+                                </div>                             
+                            </div>
+                        </div>
+                        <!-- Model  Preview videos-->
+                        <div id="preview-video-2" uk-modal> 
+                            <div class="uk-modal-dialog uk-margin-auto-vertical"> 
+                                <button class="uk-modal-close-outside" type="button" uk-close></button>                             
+                                <div class="video-responsive">
+                                    <iframe src="https://www.youtube.com/embed/nOCXXHGMezU" class="uk-padding-remove" uk-video="automute: true" frameborder="0" allowfullscreen uk-responsive></iframe>
+                                </div>                             
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- tab 1 About the course -->
+                    <li>
+                            <h3 class="uk-margin-top"> About this Course</h3>
+                            {{course.val.ldescription|safe }}
+                            <h4> What You'll Learn</h4>
+                            {{course.val.learn|safe }}
+                            <h4>Requirements </h4>
+                            {{course.val.requirements|safe }}
+                    </li>
+                    <!-- tab 3 Reveiws -->
+                    <li> 
+                        <h2 class="uk-heading-line uk-text-center"><span> Reveiws </span></h2>
+                        <div class="uk-grid-small  uk-margin-medium-top" uk-grid> 
+                            <div class="uk-width-1-5 uk-first-column">
+                                <img alt="Image" class="uk-width-1-2 uk-margin-small-top uk-margin-small-bottom uk-border-circle uk-align-center  uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-2.png">
+                            </div>
+                            <div class="uk-width-4-5 uk-padding-remove-left"> 
+                                <div class="uk-float-right"> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                </div>
+                                <h4 class="uk-margin-remove"> Masriam keny </h4> 
+                                <span class="uk-text-small"> 2 Hourse ago</span> 
+                                <hr class="uk-margin-small">
+                                <p class="uk-margin-remove-top uk-margin-small-bottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p> 
+                            </div>                         
+                        </div>
+                        <div class="uk-grid-small  uk-margin-medium-top" uk-grid> 
+                            <div class="uk-width-1-5 uk-first-column">
+                                <img alt="Image" class="uk-width-1-2 uk-margin-small-top uk-margin-small-bottom uk-border-circle uk-align-center  uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature.jpg">
+                            </div>
+                            <div class="uk-width-4-5 uk-padding-remove-left"> 
+                                <div class="uk-float-right"> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                </div>
+                                <h4 class="uk-margin-remove"> Sasriam keny </h4> 
+                                <span class="uk-text-small"> 2 Hourse ago</span> 
+                                <hr class="uk-margin-small">
+                                <p class="uk-margin-remove-top uk-margin-small-bottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat .</p> 
+                            </div>                         
+                        </div>
+                        <div class="uk-grid-small uk-margin-medium-top" uk-grid> 
+                            <div class="uk-width-1-5 uk-first-column">
+                                <img alt="Image" class="uk-width-1-2 uk-margin-small-top uk-margin-small-bottom uk-border-circle uk-align-center  uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-3.png">
+                            </div>
+                            <div class="uk-width-4-5 uk-padding-remove-left"> 
+                                <div class="uk-float-right"> 
+                                    <i class="fas fa-star uk-text-danger icon-small"></i> 
+                                    <i class="fa-star far icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                </div>
+                                <h4 class="uk-margin-remove"> Masriam keny </h4> 
+                                <span class="uk-text-small"> 2 Hourse ago</span> 
+                                <hr class="uk-margin-small">
+                                <p class="uk-margin-remove-top uk-margin-small-bottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p> 
+                            </div>                         
+                        </div>
+                        <div class="uk-grid-small uk-margin-medium-top" uk-grid> 
+                            <div class="uk-width-1-5 uk-first-column">
+                                <img alt="Image" class="uk-width-1-2 uk-margin-small-top uk-margin-small-bottom uk-border-circle uk-align-center  uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-2.png">
+                            </div>
+                            <div class="uk-width-4-5 uk-padding-remove-left"> 
+                                <div class="uk-float-right"> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="fas fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                    <i class="far fa-star icon-small"></i> 
+                                </div>
+                                <h4 class="uk-margin-remove"> Masriam keny </h4> 
+                                <span class="uk-text-small"> 2 Hourse ago</span> 
+                                <hr class="uk-margin-small">
+                                <p class="uk-margin-remove-top uk-margin-small-bottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p> 
+                            </div>                         
+                        </div>
+                    </li>
+            </main>
+
+{% endblock content %}

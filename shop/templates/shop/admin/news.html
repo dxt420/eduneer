@@ -1,0 +1,143 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+
+
+{% block title %}
+News
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+    <div class="uk-container">
+      <!-- main contant -->   
+      <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
+        <div class="admin-content-inner"> 
+                <div class="uk-margin uk-flex-inline uk-flex-middle"> 
+                     
+                        <h4 class="uk-margin-remove"> News  </h4> 
+                        <a class="uk-button uk-button-success uk-margin-medium-left admin-btn uk-text-uppercase" href="#add-model"
+                        uk-tooltip="title: Create Article ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle> 
+                            <i class="fas fa-plus"></i>  new 
+                        </a>    
+                        
+                        
+                           <!-- model -->
+                 <div id="add-model" uk-modal>
+                <div class="uk-modal-dialog uk-width-2-3@m">
+                    <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>
+                    <div class="uk-modal-header uk-background-grey">
+                        <h4 class="uk-text-white"> New Article  </h4>
+                    </div>
+    
+    
+                    <form action={% url 'shop:addnews' %} method="post" enctype="multipart/form-data">  
+                        {% csrf_token %}  
+    
+                        <div class="uk-modal-body">
+                            <div uk-grid>
+    
+                                <div class="uk-width">
+    
+                                    <div class="uk-margin">
+                                        <label> Title </label>
+                                        <textarea class="uk-textarea" required name="title" rows="2"> </textarea>
+                                    </div>
+    
+                                    <div class="uk-margin">
+                                        <div class=""> Short Description </div>
+                                        <textarea required name="sdescription" class="uk-textarea"
+                                            rows="2"></textarea>
+                                    </div>
+    
+                                  
+
+                                  
+                                    
+    
+                                    <div class="uk-margin">
+                                        <div class=""> Article</div>
+                                        <textarea required name="article" class="uk-textarea froala" rows="5"
+                                            placeholder="Write something"></textarea>
+    
+    
+                                    </div>
+    
+
+                                    <div class="uk-margin">
+                                        <label> Written By </label>
+                                        <textarea class="uk-textarea" required name="written_by" rows="2"> </textarea>
+                                    </div>
+                                 
+                                    
+    
+    
+    
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button class="uk-button uk-button-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                    </div>                 
+                    
+            <div class="uk-background-default uk-position-relative uk-box-shadow-medium"> 
+                <!-- <h5 class="uk-padding-small uk-margin-remove uk-text-bold  uk-text-left"> Manage Courses </h5>  -->
+               
+                <hr class="uk-margin-remove"> 
+            {% if news.each %}
+
+                {% for n in news.each %}
+                <div class="uk-padding-small" uk-grid> 
+                    <div class="uk-width-1-3@m uk-visible@m"> 
+                        {% if n.val.cover %}
+                            <img src="{{n.val.cover}}" alt="" class="uk-animation-fade"> 
+                        {% else %}
+                            <img src="/static/shop/assets/images/cover.png" alt="" class="uk-animation-fade"> 
+                        {% endif %}
+                                                
+                    </div>                         
+                    <div class="uk-width-expand"> 
+                        <div class="uk-align-right"> 
+                            <a class="el-content uk-button uk-button-grey uk-circle" href={% url 'shop:adminNewsDetail' n.key %} > <i class="fas fa-pen"></i> details </a> 
+                            <a onclick="return confirm('Are you sure you want to delete {{n.val.title}}?');" class="uk-circle uk-button uk-button-danger admin-table-btn" href={% url 'shop:deletenews' n.key %}> 
+                                <i class="fas fa-trash uk-visible@m"></i> delete 
+                            </a>   
+                           
+                            
+                        </div>                             
+                        <h3 class="uk-margin-top"> {{n.val.title}} </h3> 
+                      
+                        <h5 class="uk-margin-small uk-text-muted"> Short Description</h5> 
+                        <p> {{n.val.sdescription}} </p> 
+                    </div>                         
+                </div>                     
+                <hr> 
+                {%   endfor  %}      
+
+                {% else %}
+
+             
+                <div class="uk-padding-small" uk-grid> 
+                 <p>No news added yet</p>                         
+                </div>   
+              
+                    
+                {% endif %}
+                    
+            </div>                 
+                          
+        </div>             
+    </div>         
+       
+    </div>
+      
+      
+</main>   
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+
+
+{% block title %}
+New Course
+{% endblock %}
+
+
+{% block content %}
+
+<div class="admin-content-inner "> 
+
+         <!-- navbar -->             
+      <nav class="uk-navbar uk-container-small uk-margin-auto"> 
+            <div class="uk-navbar-left "> 
+                <ul class="uk-navbar-nav"> 
+                    <li class="uk-active"> 
+                        <a href={% url 'shop:adminCourses' %}>Manage Courses  &nbsp;&nbsp;&nbsp;></a>  
+                    </li>                         
+                    <li> 
+                        <a href="javascript:void(0);"> New Course &nbsp;&nbsp;&nbsp;></a> 
+                        
+                    </li>   
+                    <li> 
+                        <a href="javascript:void(0);"> Cover Image &nbsp;&nbsp;&nbsp;></a> 
+                        
+                    </li>   
+               
+                </ul>                     
+            </div>                 
+                      
+        </nav>  
+
+    
+
+    <div class="uk-margin-medium uk-card-small uk-card-default uk-container-small uk-margin-auto "> 
+      
+      
+        <div class="uk-card-header uk-text-bold">
+            <i class="fas fa-user uk-margin-small-right"></i> Primary Info
+        </div>                     
+        <div class="uk-card-body "> 
+            <div uk-grid> 
+                                      
+                <div class="uk-width"> 
+                 
+                    <div class="uk-width-1-2"> 
+                        <div class=""> Featured Cover Image  </div>                                         
+                        <form action="/file-upload" class="dropzone  id=" y-awesome-dropzone""> 
+                            <div class="fallback"> 
+                                <input name="file" type="file"/> 
+                            </div>                                             
+                        </form>   
+                        <!-- <p>Recomend size 50 x 50</p> -->
+                    </div>                               
+                </div>                             
+            </div>                         
+        </div>   
+        
+      
+
+
+    </div>    
+    <form action={% url 'shop:addcourse' %} method="post" enctype="multipart/form-data">  
+
+        <textarea id="title_H" required name="title"></textarea>  
+        <textarea hidden name="sdescription"></textarea>  
+        <textarea hidden name="ldescription"></textarea>  
+        <textarea hidden name="learn"></textarea>  
+        <textarea hidden name="requirements"></textarea>  
+
+        <input hidden name="price">
+        <input hidden name="category">
+
+
+
+
+
+
+
+
+
+    <div class="uk-margin-medium uk-container-small uk-margin-auto">
+    <input class="uk-button uk-button-success  uk-margin" onclick="copy();" type="submit" class="button" value="Proceed with course creation"> 
+    <div class="">
+         Proceeding will add a new course with it's basic information. You will then be redirected to course chapters page where you will able to add individual chapters for the course
+        </div>                                         
+
+        </div>
+</div>   
+
+
+</form>
+
+<script type="text/javascript">
+    function copy() {
+    
+        document.getElementById('title_H').innerHTML=document.getElementById('title').value;
+    }
+</script>
+{% endblock content %}

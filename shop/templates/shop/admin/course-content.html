@@ -1,0 +1,323 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+{% load my_tags %} 
+
+{% block title %}
+Course Sections
+{% endblock %}
+
+
+{% block content %}
+
+
+               
+    <div class="admin-content-inner"> 
+            <div class="uk-margin uk-flex-inline uk-flex-middle"> 
+                    <!-- <i class="fas fa-star icon-large uk-margin-right"></i>  -->
+                    <h2 class="uk-margin-remove"><a href={% url 'shop:adminCourseChapter' course.key %} uk-tooltip="title: Go back to course chapters ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" style="text-decoration: underline"> {{course.val.title}} </a>  </h2> 
+                             
+                </div>   
+                      
+        <!-- model -->                 
+        <div id="create-model" uk-modal> 
+            <div class="uk-modal-dialog uk-width-1-3@m"> 
+                <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                <div class="uk-modal-header uk-background-grey"> 
+                    <h4 class="uk-text-white"> Add new lesson   </h4> 
+                </div>                         
+                           
+                <div class="uk-modal-body"> 
+                       
+                                
+                        <div uk-grid> 
+                                <div class="uk-width-2-2@m"> 
+                          
+
+                                    <form action={% url 'shop:addlesson' %} method="post"  enctype="multipart/form-data">
+                                        {% csrf_token %}     
+                                        <input type="hidden" value="{{chapter.key}}" name="chapterid" />
+                                        <input type="hidden" value="{{course.key}}" name="courseid" />     
+                                        <div class="uk-width-2-2@m"> 
+                                  
+                                                <div class="uk-margin"> 
+                                                    <label> Title </label>                                                 
+                                                    <textarea required class="uk-textarea" name="lessonTitle" rows="2" placeholder="Name of the lesson"></textarea>  
+                                                </div>                                             
+                                                                                         
+                                                          
+                                                <div class="uk-margin"> 
+                                                        <label> Add Video file </label>                                                 
+                                                                     
+                                                    <input class="uk-input" accept="video/mp4" required id="fileUp" name="fileUpload" type="file" multiple>
+                                                    <input type="hidden" id="infos2" name="duration" />
+                                               </div>    
+                                        </div>                                 
+                                                                       
+                                </div>                                     
+                                                               
+                            </div>                                
+                    </div>     
+                  
+                <div class="uk-modal-footer uk-text-right"> 
+                    <button class="uk-button uk-button-grey uk-modal-close" type="button">Cancel</button>                             
+                    <button class="uk-button uk-button-success" type="submit">Save</button>                             
+                </div>
+            </form>       
+                    
+            </div>                     
+        </div>                 
+        <div uk-grid>
+             
+                <div class="uk-margin uk-flex-inline uk-flex-middle"> 
+                    
+                        <h4 class="uk-margin-remove">Section : {{chapter.val.title}} 
+                            <a class=" uk-button uk-button-small uk-button-grey uk-circle" href="#edit-model" uk-toggle> <i class="fas fa-pen"></i> edit   </a>  
+                            <a onclick="return confirm('Are you sure you want to delete {{chapter.val.title}} from this course section?');" class="uk-button uk-button-danger uk-button-small uk-circle admin-table-btn" href={% url 'shop:deletechapter' course.key chapter.key %}> 
+                                    <i class="fas fa-trash uk-visible@m"></i> Delete 
+                                </a>       </h4> 
+                        <div id="edit-model" uk-modal> 
+                            <div class="uk-modal-dialog uk-width-1-3@m"> 
+                                <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                                <div class="uk-modal-header uk-background-grey"> 
+                                    <h4 class="uk-text-white"> Edit Chapter  </h4> 
+                                </div>                         
+                                                      
+                    <form action={% url 'shop:editchapter'  %} method="post" enctype="multipart/form-data">  
+                            {% csrf_token %}  
+                                
+                
+                                <div class="uk-modal-body"> 
+                                        <div uk-grid> 
+                                                                             
+                                                <div class="uk-width"> 
+                                            <input type="hidden" value="{{chapter.key}}" name="chapterid" />
+                                            <input type="hidden" value="{{course.key}}" name="courseid" />
+                                                        <div class="uk-margin"> 
+                                                            <label> Title </label>                                                 
+                                                            <textarea class="uk-textarea" name="chapterTitle" rows="2" placeholder="Title of the chapter">{{chapter.val.title}}</textarea>  
+                                                        </div>     
+                                                        
+                                                        <!-- <div class="uk-margin"> 
+                                                                <label> Chapter Number </label>                                                 
+                                                                <input class="uk-input" type="number" name="chapterNumber">{{chapter.val.chapterNumber}}</input>  
+                                                        </div>      -->
+                                                                                                 
+                                                                              
+                                                </div>                                     
+                                            </div>                                
+                                    </div>    
+                                <div class="uk-modal-footer uk-text-right"> 
+                                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>                             
+                                    <button class="uk-button uk-button-primary" type="submit">Save</button>                             
+                                </div>  
+                
+                                       </form>                               
+                            </div>                     
+                        </div>                
+                    </div>   
+             <br>
+         
+        </div>
+        <div uk-grid>
+            <div class="uk-width-expand">
+              
+                <button class="uk-button uk-button-success admin-btn uk-text-uppercase" href="#create-model" uk-tooltip="title: Create a new lesson for this chapter  ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle> 
+                        <i class="fas fa-plus"></i> new lesson
+                    </button>    
+            </div>
+            <div class="uk-width-auto">
+                    
+                <span> 
+               
+                    {% ifequal lessons.each|length  1  %} 
+                        {{lessons.each | length }} lesson
+                    {% else %}
+                        {{lessons.each | length }} lessons
+                    {% endifequal %}
+                </span>
+              
+            </div>
+
+        </div>
+        <div class="uk-overflow-auto"> 
+                {% if lessons.each %} 
+            
+            <table class="uk-table uk-table-hover uk-table-middle uk-table-divider"> 
+                <thead> 
+                    <tr class="uk-text-small uk-text-bold"> 
+                      
+                        <th>Name</th> 
+                        <th>Duration </th> 
+                        <th>Last Updated </th> 
+                        <th>Time Added </th> 
+                      
+                    </tr>                             
+                </thead>                         
+                <tbody> 
+
+                        {% for lesson in lessons.each %}
+                    <tr> 
+                                                  
+                        <td> {{lesson.val.title}}  </td> 
+                        <td>{% timer lesson.val.duration %}   </td> 
+                        <td>{{lesson.val.last_updated}} </td> 
+                        <td>{{lesson.val.time_added}} </td> 
+                     
+                        <td class="uk-flex-inline uk-flex-middle"> 
+                            <button href="#view-modelXX" uk-toggle class="uk-button uk-button-grey admin-table-btn"> 
+                                <i class="fas fa-eye uk-visible@m"></i> View 
+                            </button>     
+                            <div id="view-modelXX" uk-modal> 
+                                    <div class="uk-modal-dialog uk-width-6-6@m"> 
+                                        <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                                          
+                                            <div class="uk-modal-body"> 
+                       
+                                
+                                                    <div uk-grid> 
+                                                            <div class="uk-width-2-2@m"> 
+                                                      
+                                                                    <div class="uk-margin"> 
+                                                                            <div class="video-responsive">
+                                                                                    <iframe src="{{lesson.val.video_url}}" frameborder="0" uk-video="automute: false" allowfullscreen uk-responsive></iframe>
+                                                                                </div>                                              
+                                                                        </div>                                   
+                                                                                                   
+                                                            </div>                                     
+                                                                                           
+                                                        </div>                                
+                                                </div>    
+          
+                                    </div>                     
+                                </div>   
+                            
+
+                            <button href="#edit-modelXX" uk-toggle class="uk-button uk-button-grey admin-table-btn"> 
+                                <i class="fas fa-trash uk-visible@m"></i> Edit 
+                            </button>          
+                            <div id="edit-modelXX" uk-modal> 
+                                    <div class="uk-modal-dialog uk-width-1-3@m"> 
+                                        <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                                        <div class="uk-modal-header uk-background-grey"> 
+                                            <h4 class="uk-text-white"> Edit  </h4> 
+                                        </div>                         
+                                                              
+                                          <form action={% url 'shop:editlesson'  %} method="post" enctype="multipart/form-data">  
+                                    {% csrf_token %}  
+                                        
+                        
+                                  
+                                            
+                                            
+                                            <div class="uk-modal-body"> 
+                       
+                                
+                                                    <div uk-grid> 
+                                                            <div class="uk-width-2-2@m"> 
+                                                      
+                                                                    <input type="hidden" value="{{chapter.key}}" name="chapterid" />
+                                                                    <input type="hidden" value="{{course.key}}" name="courseid" />
+                                                                    <input type="hidden" value="{{lesson.key}}" name="lessonid" />  
+                                                                    <div class="uk-width-2-2@m"> 
+                                                              
+                                                                            <div class="uk-margin"> 
+                                                                                <label> Title </label>                                                 
+                                                                                <textarea required class="uk-textarea" name="lessonTitle2" rows="2" placeholder="Name of the lesson">{{lesson.val.title}}</textarea>  
+                                                                            </div>                                             
+                                                                         
+                                                                            <!-- <div class="uk-margin"> 
+                                                                                    <label> Change Video file </label>                                                 
+                                                                                              
+                                                                                <input class="uk-input " id="fileUp" name="fileUpload2" type="file" value="{{lesson.val.video_url}}" multiple>
+                                                                                <input type="hidden" id="infos2" value="{{lesson.val.duration}}" name="duration2" />
+                                                                           </div>     -->
+                                                                    </div>                                 
+                                                                                                   
+                                                            </div>                                     
+                                                                                           
+                                                        </div>                                
+                                                </div>    
+
+                                                
+                                        <div class="uk-modal-footer uk-text-right"> 
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>                             
+                                            <button class="uk-button uk-button-primary" type="submit">Save</button>                             
+                                        </div>  
+                        
+                                               </form>                               
+                                    </div>                     
+                                </div>                              
+                            <!-- <button class="uk-button uk-button-danger admin-table-btn"> 
+                                <i class="fas fa-trash uk-visible@m"></i> Delete 
+                            </button>  -->
+                            
+                            
+                            <a onclick="return confirm('Are you sure you want to delete this lesson?');" class="uk-button uk-button-danger admin-table-btn" href={% url 'shop:deletelesson' course.key chapter.key lesson.key %}> 
+                                    <i class="fas fa-trash uk-visible@m"></i> Delete 
+                                </a>        
+                        </td>                                 
+                    </tr>    
+                    {% endfor %}                
+                                              
+                </tbody>                         
+            </table>   
+             
+            {% else %}
+                                      
+      <!-- <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">No lessons added yet for this chapter  </div> -->
+                                             <!-- preview link -->
+                                 
+  {% endif %}                      
+        </div>             
+    </div>             
+ 
+
+    <DIV id="preview-template" style="display: none;">
+
+
+
+<script>
+    var myVideos = [];
+ window.URL = window.URL || window.webkitURL;
+
+document.getElementById('fileUp').onchange = setFileInfo;
+
+function setFileInfo() {
+  var files = this.files;
+  myVideos.push(files[0]);
+  var video = document.createElement('video');
+  video.preload = 'metadata';
+
+  video.onloadedmetadata = function() {
+    window.URL.revokeObjectURL(video.src);
+    var duration = video.duration;
+    myVideos[myVideos.length - 1].duration = duration;
+    updateInfos();
+  }
+
+  video.src = URL.createObjectURL(files[0]);;
+}
+
+
+function updateInfos() {
+//   var infos = document.getElementById('infos');
+  var infos2 = document.getElementById('infos2');
+//   infos.textContent = "";
+  infos2.value = "";
+
+  for (var i = 0; i < myVideos.length; i++) {
+    // infos.textContent += myVideos[i].name + " duration: " + myVideos[i].duration + '\n';
+    infos2.value = myVideos[i].duration;
+    console.log(myVideos[i]);
+
+  }
+}
+    </script>
+
+
+
+
+
+
+
+{% endblock content %}

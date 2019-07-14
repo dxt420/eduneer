@@ -1,0 +1,174 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+
+
+{% block title %}
+New Course
+{% endblock %}
+
+
+{% block content %}
+
+<div class="admin-content-inner "> 
+
+         <!-- navbar -->             
+      <nav class="uk-navbar uk-container-small uk-margin-auto"> 
+            <div class="uk-navbar-left "> 
+                <ul class="uk-navbar-nav"> 
+                    <li class="uk-active"> 
+                        <a href={% url 'shop:adminCourses' %}>Manage Courses  &nbsp;&nbsp;&nbsp;></a>  
+                    </li>                         
+                    <li> 
+                        <a href="javascript:void(0);"> New Course &nbsp;&nbsp;&nbsp;</a> 
+                    </li>   
+               
+                </ul>                     
+            </div>                 
+                      
+        </nav>  
+
+        <div id="category-model" uk-modal> 
+            <div class="uk-modal-dialog"> 
+                <button class="uk-modal-close-default" type="button" uk-close></button>                             
+                <div class="uk-modal-header"> 
+                    <h4> New Course Category  </h4> 
+                </div>      
+                <form action={% url 'shop:addcategory' %} method="post" enctype="multipart/form-data">
+                       {% csrf_token %}                 
+                <div class="uk-modal-body"> 
+                    <div uk-grid> 
+                                                         
+                        <div class="uk-width-2-3@m"> 
+                       
+                                <div class="uk-margin"> 
+                                    <label> Name  </label>                                                 
+                                    <input class="uk-input uk-form-width-large" name="name" placeholder="Name" type="text" oninvalid="this.setCustomValidity('Category Name is required field')" oninput="setCustomValidity('')" required> 
+                              
+                                </div>                                             
+                                <div class="uk-margin"> 
+                                    <label>  Description </label>                                                 
+                                    <textarea class="uk-textarea" name="description" rows="5" placeholder="Category Description"></textarea>                                                 
+                                </div>                                             
+                                                                       
+                                                           
+                        </div>                                     
+                    </div>                                 
+                </div>                             
+                <div class="uk-modal-footer uk-text-right"> 
+                               
+                    <button class="uk-button uk-button-success" type="submit">Save</button>                                 
+                </div>     
+            </form>                        
+            </div>                         
+        </div> 
+
+    <div class="uk-margin-medium uk-card-small uk-card-default uk-container-small uk-margin-auto "> 
+        <form action={% url 'shop:addcourse' %} method="post" enctype="multipart/form-data">  
+            {% csrf_token %}  
+        <div class="uk-card-header uk-text-bold">
+            <i class="fas fa-user uk-margin-small-right"></i> Primary Info
+        </div>                     
+        <div class="uk-card-body "> 
+            <div uk-grid> 
+                                      
+                <div class="uk-width"> 
+           
+                        <div class="uk-width-1-2"> 
+                            <div class=""> Title  </div>                                         
+                          
+                            <textarea required name="title" class="uk-textarea" rows="2" placeholder="Name of the course"></textarea>  
+
+                        </div>                                     
+                        <div class="uk-width-1-2"> 
+                            <div class=""> Short Description   </div>                                         
+                            <textarea required name="sdescription" class="uk-textarea" rows="2" placeholder="A sub-title or short description"></textarea>  
+                        </div>                                     
+                      
+                        <div class="uk-width-1-2"> 
+                            <div class=""> Price   </div>                                                        
+                            <input required class="uk-input" name="price" type="number" min="0.00" max="10000.00" step="0.01" />
+                        </div>  
+                        
+                        <div class="uk-width-1-2"> 
+                            <div class=""> Category 
+                                
+                            <!-- <button class="uk-button uk-button-grey admin-table-btn" href="#category-model" uk-toggle> 
+                                <i class="fas fa-pen uk-visible@m"></i> Edit 
+                            </button>   -->
+                        
+                            </div>                                         
+                      
+                            <select class="uk-input" id="selectbox1" name='category'>
+                                {% for car in categories.each %}
+                                    <option value='{{ car.val.name }}'>{{ car.val.name }}</option>
+                                {% endfor %}
+                            </select>
+
+   
+
+         
+                        </div>  
+                                         
+                  
+                                          
+                </div>                             
+            </div>                         
+        </div>   
+        
+        <div class="uk-card-header uk-text-bold">
+            <i class="fas fa-user uk-margin-small-right"></i> About the course 
+        </div>                     
+        <div class="uk-card-body "> 
+            <div uk-grid> 
+                                      
+                <div class="uk-width-2-3"> 
+                
+                                                           
+                        <div class="uk-width"> 
+                            <div class=""> Long Description   </div>                                         
+                            <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                            <textarea required name="ldescription" class="uk-textarea froala" rows="5" placeholder="Entire description of the course"></textarea>  
+                        </div>                                     
+                                 
+                        <div class="uk-width"> 
+                            <div class=""> What You'll Learn (Hint: Use enter to seperate items) </div>                                         
+                          
+                            <textarea required name="learn" class="uk-textarea froala" rows="5" placeholder="Name of the course"></textarea>  
+
+                        </div>                                     
+                        <div class="uk-width"> 
+                            <div class=""> Requirements (Hint: Use enter to seperate items)  </div>                                         
+                            <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                            <textarea required name="requirements" class="uk-textarea froala" rows="5" placeholder="A sub-title or short description"></textarea>  
+                        </div> 
+                                                       
+                                          
+                </div>                             
+            </div>                         
+        </div>   
+
+
+    </div>    
+ 
+
+
+
+
+
+
+
+
+    <div class="uk-margin-medium uk-container-small uk-margin-auto">
+    <input class="uk-button uk-button-success  uk-margin" onclick="copy();" type="submit" class="button" value="Proceed with course creation"> 
+    <div class="">
+         Proceeding will add a new course with it's basic information. You will then be redirected to course chapters page where you will able to add individual chapters for the course
+        </div>                                         
+
+        </div>
+</div>   
+
+
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,161 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+   
+
+{% block title %}
+Course Categories
+{% endblock %}
+
+
+{% block content %}
+
+
+     
+           
+
+
+
+<main>
+    <div class="uk-container">
+      <!-- main contant -->   
+      <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
+            <div class="admin-content-inner"> 
+                    <div class="uk-flex-inline uk-flex-middle"> 
+                        <i class="fas fa-Book icon-large uk-margin-right"></i> 
+                        <h4 class="uk-margin-remove"> Course Categories </h4> 
+                        <button class="uk-button uk-button-success uk-margin-medium-left admin-btn uk-text-uppercase" href="#create-model" uk-tooltip="title: Create New User ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle> 
+                                <i class="fas fa-plus"></i> add new 
+                        </button>                     
+                        <div id="create-model" uk-modal> 
+                            <div class="uk-modal-dialog"> 
+                                <button class="uk-modal-close-default" type="button" uk-close></button>                             
+                                <div class="uk-modal-header"> 
+                                    <h4> Add Course Category  </h4> 
+                                </div>      
+                                <form action={% url 'shop:addcategory' %} method="post" enctype="multipart/form-data">
+                                       {% csrf_token %}                 
+                                <div class="uk-modal-body"> 
+                                    <div uk-grid> 
+                                                                         
+                                        <div class="uk-width-2-3@m"> 
+                                       
+                                                <div class="uk-margin"> 
+                                                    <label> Name  </label>                                                 
+                                                    <input class="uk-input uk-form-width-large" name="name" placeholder="Name" type="text" oninvalid="this.setCustomValidity('Category Name is required field')" oninput="setCustomValidity('')" required> 
+                                              
+                                                </div>                                             
+                                                <div class="uk-margin"> 
+                                                    <label>  Description </label>                                                 
+                                                    <textarea class="uk-textarea" name="description" rows="5" placeholder="Category Description"></textarea>                                                 
+                                                </div>                                             
+                                                                                       
+                                                                           
+                                        </div>                                     
+                                    </div>                                 
+                                </div>                             
+                                <div class="uk-modal-footer uk-text-right"> 
+                                               
+                                    <button class="uk-button uk-button-success" type="submit">Save</button>                                 
+                                </div>     
+                            </form>                        
+                            </div>                         
+                        </div>                     
+                    </div>                 
+                               
+                    <!-- table -->                 
+                    <div class="uk-overflow-auto"> 
+                        <table class="uk-table uk-table-hover uk-table-middle uk-table-divider"> 
+                            <thead> 
+                                <tr> 
+                                 
+                                    <!-- <th class="uk-table-shrink"> Name</th>  -->
+                                    <th class="uk-width-small"> Name </th> 
+                                    <th class="uk-width-auto"> Description </th> 
+                                    <th class="uk-table-small">  </th> 
+                                </tr>                             
+                            </thead>                         
+                            <tbody> 
+
+                                    {% for category in categories.each %}
+                                <tr> 
+                                 
+                                                             
+                                    <td class="uk-text-truncate">{{category.val.name}}</td> 
+                                    <td class="uk-table-link uk-text-truncate"> 
+                                        <a class="uk-link-reset" href="">{{category.val.description}}</a> 
+                                    </td>                                 
+                                    <td class="uk-flex-inline uk-flex-middle"> 
+                                                                          
+                                        <button class="uk-button uk-button-grey admin-table-btn" href="#edit-model-{{category.key}}" uk-toggle> 
+                                            <i class="fas fa-pen uk-visible@m"></i> Edit 
+                                        </button>        
+                                        <div id="edit-model-{{category.key}}" uk-modal> 
+                                                <div class="uk-modal-dialog"> 
+                                                    <button class="uk-modal-close-default" type="button" uk-close></button>                             
+                                                    <div class="uk-modal-header"> 
+                                                        <h4> Edit Course Category  </h4> 
+                                                    </div>    
+                                                         <form action={% url 'shop:editcategory' category.key %} method="post" enctype="multipart/form-data">                         
+                                                    {% csrf_token %}   
+                                                    <div class="uk-modal-body"> 
+                                                        <div uk-grid> 
+                                                                                             
+                                                            <div class="uk-width-2-3@m"> 
+                                                         
+                                                                    <div class="uk-margin"> 
+                                                                        <label> Name  </label>                                                 
+                                                                        <input class="uk-input uk-form-width-large" name="name"  type="text" value="{{category.val.name}}" required> 
+                                                                        <input type="hidden" name="previous_name" value="{{category.val.name}}" >
+                                                                    </div>                                             
+                                                                    <div class="uk-margin"> 
+                                                                        <label>  Description </label>                                                 
+                                                                        <textarea class="uk-textarea" name="description" rows="5" >{{category.val.description}}</textarea>                                                 
+                                                                    </div>                                             
+                                                                                                           
+                                                                                                  
+                                                            </div>                                     
+                                                        </div>                                 
+                                                    </div>                             
+                                                    <div class="uk-modal-footer uk-text-right"> 
+                                                                                 
+                                                        <button class="uk-button uk-button-success" type="submit">Save</button>                                 
+                                                    </div>     
+                                                     </form>                              
+                                                </div>                         
+                                            </div>                                  
+                                        <a onclick="return confirm('Are you sure you want to delete {{category.val.name}} from categories?');" class="uk-button uk-button-danger admin-table-btn" href={% url 'shop:deletecategory' category.key %}> 
+                                                <i class="fas fa-trash uk-visible@m"></i> Delete 
+                                            </a>                                
+                                    </td>                                 
+                                </tr>                             
+                                           {%   endfor  %}
+                            </tbody>                         
+                        </table>                     
+                    </div>                 
+                               
+                </div>              
+    </div>         
+       
+    </div>
+      
+      
+</main>   
+<div class="modal"></div>
+<script>
+// $body = $("body");
+
+// $(document).on({
+//     ajaxStart: function() { $body.addClass("loading");    },
+//      ajaxStop: function() { $body.removeClass("loading"); }    
+// });
+
+// // Initiates an AJAX request on click
+// $(document).on("click", function(){
+//     $.get("/mockjax");        
+
+
+// });
+
+
+</script>
+{% endblock content %}

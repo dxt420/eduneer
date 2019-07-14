@@ -1,0 +1,169 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+    <div class="uk-container">
+      <!-- main contant -->   
+      <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
+        <div class=""> 
+                    
+            <div class="admin-content-inner"> 
+                <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-match " uk-grid> 
+                    <div> 
+                        <div class="uk-background-cover uk-light dashboard-card" data-src="/static/shop/assets/images/admin/cards-bg.jpg" uk-img> 
+                            <i class="fas fa-play icon-xxlarge uk-visible@m"></i> 
+                            <h3> 
+                              
+                                {% ifequal courses.each|length  1  %} 
+                                    {{courses.each | length }} course
+                                {% else %}
+                                    {{courses.each | length }} courses
+                                {% endifequal %}
+                            </h3> 
+                          
+                            <a href={% url 'shop:adminCourses' %}> View All </a>
+                        </div>                         
+                    </div>  
+                                       
+                    <div> 
+                        <div class="uk-background-cover uk-light dashboard-card" data-src="/static/shop/assets/images/admin/cards-bg.jpg" uk-img> 
+                            <i class="far fa-user icon-xxlarge uk-visible@m"></i> 
+                            
+                            <h3> 
+                              
+                                    {% ifequal users_count  1  %} 
+                                        {{users_count }} user
+                                    {% else %}
+                                        {{users_count }} users
+                                    {% endifequal %}
+                            </h3> 
+                          
+                            <a href="#"> View All </a>
+                        </div>                         
+                    </div>                     
+                    <div> 
+                        <div class="uk-background-cover uk-light dashboard-card" data-src="/static/shop/assets/images/admin/cards-bg.jpg" uk-img> 
+                            <i class="fas fa-code icon-xxlarge uk-visible@m"></i> 
+                            <h3> 10 Talks </h3> 
+                        
+                            <a href="#"> View All </a>
+                        </div>                         
+                    </div> 
+                    <div> 
+                            <div class="uk-background-cover uk-light dashboard-card" data-src="/static/shop/assets/images/admin/cards-bg.jpg" uk-img> 
+                                <i class="fas fa-file-alt icon-xxlarge uk-visible@m"></i>
+                                <h3> 2 Articles </h3> 
+                            
+                                <a href="#"> View All </a>
+                            </div>                         
+                        </div>                     
+                </div>
+
+                
+                
+                <!-- <div uk-grid>
+                    <div class="uk-width-1-2@m"> 
+                        <div class="uk-card-small uk-card-default"> 
+                            <div class="uk-card-header uk-text-bold">
+                                <i class="fas fa-users uk-margin-small-right"></i> Latest  Regsiter users 
+                            </div>                                 
+                            <div class="uk-card-body uk-padding-remove-top"> 
+                                <div class="uk-child-width-1-4@m uk-child-width-1-2 uk-grid-collapse uk-flex-center"  uk-scrollspy="target: > div; cls:uk-animation-scale-up; delay: 100" uk-grid>
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-1.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">Quen smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </div>  
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-2.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">John smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </div>
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-3.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">Sakhay smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </div>
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-4.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">Quen smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </div>
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-3.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">Moli smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </div>
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-2.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">Quen smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </>
+                                    <div>
+                                        <a href="Profile.html" class="uk-link-reset">
+                                            <div class="uk-padding-remove   uk-text-center"> 
+                                                <img alt="Image" class="uk-width-2-3 uk-margin-top uk-margin-small-bottom uk-border-circle uk-align-center uk-box-shadow-large" src="/static/shop/assets/images/avatures/avature-1.png">
+                                                    <h5 class="uk-margin-remove-bottom uk-margin-remove-top ">Quen smith</h5>  
+                                            </div> 
+                                        </a>                          
+                                    </div>
+                                </div>
+                            </div>                                 
+                        </div>                             
+                    </div> 
+                    <div class="uk-width-1-2@m">
+                        <div class="uk-card-small uk-card-default"> 
+                            <div class="uk-card-header uk-text-bold">
+                                <i class="fas fa-comment uk-margin-small-right"></i> Latest  Comments   
+                            </div>                                 
+                            <div class="uk-card-body">
+                                <img class="user-profile-medium uk-align-left uk-margin-small-right uk-margin-small-bottom" src="/static/shop/assets/images/avatures/avature-1.png" width="60"  alt="Example image"> 
+                                <p class="uk-margin-remove-top">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </p>  
+                                <hr>
+                                <img class="user-profile-medium uk-align-left uk-margin-small-right uk-margin-small-bottom" src="/static/shop/assets/images/avatures/avature-1.png" width="60" alt="Example image"> 
+                                <p class="uk-margin-remove-top">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p> 
+                                <hr>
+                                <img class="user-profile-medium uk-align-left uk-margin-small-right uk-margin-small-bottom" src="/static/shop/assets/images/avatures/avature-1.png" width="60"  alt="Example image"> 
+                                <p class="uk-margin-remove-top">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </p>  
+                                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>              -->
+            </div> 
+        </div>
+       
+    </div>
+      
+      
+</main>   
+{% endblock content %}

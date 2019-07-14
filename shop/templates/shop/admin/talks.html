@@ -1,0 +1,142 @@
+{% extends "shop/admin/base.html" %}
+{% load static %}
+
+
+{% block title %}
+Talks
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+    <div class="uk-container">
+      <!-- main contant -->   
+      <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
+        <div class="admin-content-inner"> 
+                <div class="uk-margin uk-flex-inline uk-flex-middle"> 
+                     
+                        <h4 class="uk-margin-remove"> Talks  </h4> 
+                        <a class="uk-button uk-button-success uk-margin-medium-left admin-btn uk-text-uppercase" href="#add-model"
+                        uk-tooltip="title: Create New Talk ; delay: 500 ; pos: top ;animation:	uk-animation-scale-up" uk-toggle> 
+                            <i class="fas fa-plus"></i>  new 
+                        </a>    
+                                <!-- model -->
+                 <div id="add-model" uk-modal>
+                    <div class="uk-modal-dialog uk-width-2-3@m">
+                        <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>
+                        <div class="uk-modal-header uk-background-grey">
+                            <h4 class="uk-text-white"> New Talk  </h4>
+                        </div>
+        
+        
+                        <form action={% url 'shop:addtalk' %} method="post" enctype="multipart/form-data">  
+                            {% csrf_token %}  
+        
+                            <div class="uk-modal-body">
+                                <div uk-grid>
+        
+                                    <div class="uk-width"> 
+                                     
+                                            <div class="uk-width"> 
+                                                <div class=""> Title  </div>                                         
+                                              
+                                                <textarea name="title" class="uk-textarea" rows="2" placeholder="Title of the talk"></textarea>  
+                    
+                                            </div>                                     
+                                            <div class="uk-width"> 
+                                                <div class=""> Short Description   </div>                                         
+                                                <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                                                <textarea name="sdescription" class="uk-textarea" rows="2" placeholder="A short description"></textarea>  
+                                            </div>                                     
+                                          
+                                            <div class="uk-width"> 
+                                                <div class="">  About Talk     </div>                                         
+                                                <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                                                <textarea name="about" class="uk-textarea froala" rows="4" placeholder="Detailed info about the talk"></textarea>  
+                                            </div>   
+                                            <div class="uk-width uk-grid-small" uk-grid> 
+                                            <div class="uk-width-1-2"> 
+                                                <div class="">  Creator Name     </div>                                         
+                                                <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                                                <textarea name="creator_name" class="uk-textarea" rows="2" placeholder="Name of creator of this talk"></textarea>  
+                                            </div>   
+                    
+                                            <div class="uk-width-1-2"> 
+                                                <div class="">  About Creator     </div>                                         
+                                                <!-- <input class="uk-input" type="text" placeholder="A sub-title or short description">  -->
+                                                <textarea name="creator_about" class="uk-textarea" rows="3" placeholder="Info about the creator of this talk"></textarea>  
+                                            </div>   
+                                        </div>   
+                                                                           
+                                       
+                                                                    
+                                    </div>   
+                                </div>
+                            </div>
+        
+                            <div class="uk-modal-footer uk-text-right">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                <button class="uk-button uk-button-primary" type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>                  
+                    </div>                 
+                   
+            <div class="uk-background-default uk-position-relative uk-box-shadow-medium"> 
+                    <!-- <h5 class="uk-padding-small uk-margin-remove uk-text-bold  uk-text-left"> Manage Talks </h5>  -->
+                    <!-- <p class="uk-position-top-right uk-position-small">3 Talks published</p>  -->
+               
+                <hr class="uk-margin-remove"> 
+             
+
+
+                {% if talks.each %}
+
+                {% for talk in talks.each %}
+                <div class="uk-padding-small" uk-grid> 
+                    <div class="uk-width-1-3@m uk-visible@m"> 
+                        {% if talk.val.cover %}
+                        <img src="{{talk.val.cover}}" alt="" class="uk-animation-fade"> 
+                    {% else %}
+                        <img src="/static/shop/assets/images/cover.png" alt="" class="uk-animation-fade"> 
+                    {% endif %}
+
+                   <ul class="uk-list uk-text-small"> 
+                                            
+                            <li> Published: {{talk.val.time_added}} </li>                                 
+                        </ul>                             
+                    </div>                         
+                    <div class="uk-width-expand"> 
+                        <div class="uk-align-right"> 
+                            <a class="el-content uk-button uk-button-grey uk-circle" href={% url 'shop:adminTalkNewContent' talk.key %}> <i class="fas fa-pen"></i> details </a> 
+                        </div>                             
+                        <h3 class="uk-margin-top"> {{talk.val.title}} </h3> 
+                       
+                        <p> {{talk.val.sdescription}} </p> 
+                    </div>                         
+                </div>                     
+                <hr> 
+                {%   endfor  %}      
+
+                {% else %}
+
+             
+                <div class="uk-padding-small" uk-grid> 
+                 <p>No talks added yet</p>                         
+                </div>   
+              
+                    
+                {% endif %}
+                               
+            </div>                 
+                      
+        </div>             
+    </div>         
+       
+    </div>
+      
+      
+</main>   
+{% endblock content %}

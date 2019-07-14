@@ -1,0 +1,891 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+
+
+
+{% block compiledcss %}
+<link rel='stylesheet' id='compiled.css-css' href={% static 'shop/assets/css/compiled-4.8.0.min.css' %} type='text/css' media='all' />
+
+{% endblock %}
+
+
+
+
+{% block logo %} 
+<div id="logo-box" class="bg-primary mdk-box js-mdk-box mb-0" style="height: 292px;"
+data-effects="parallax-background blend-background">
+<div class="mdk-box__bg">
+    <div class="mdk-box__bg-front"
+        style="background-image: url(/static/shop/assets/images/eduneer_home.png); background-position: center;">
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="container page__container" style="margin-left: 0px;margin-right: 0px;margin-top:10px;max-width:2000px;">
+
+    <div class="media align-items-center mb-headings pt-0">
+        <div class="media-body">
+
+                <span class="badge badge-info"  >
+                        <h1 class="h2" style="font-size: 1.999rem;margin-left:10px;color: white">Courses <a href={% url 'shop:courses' %}><span
+                            class="badge badge-pill badge-danger" style="font-size: 1.2rem;left:10px;">View
+                            All</span></a></h1>
+                </span>
+            
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="clearfix"></div>
+    <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
+
+
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li style="background-color:rgb(160, 4, 4)" data-target="#carousel-example-multi" data-slide-to="0"
+                class="active"></li>
+            <li style="background-color:rgb(160, 4, 4)" data-target="#carousel-example-multi" data-slide-to="1"></li>
+
+        </ol>
+        <!--/.Indicators-->
+
+        <div class="carousel-inner v-2" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+                <div class="col-md-4 col-sm-12 col-12">
+                    <div class="card mb-2 img__wrap">
+                        <img class="card-img-top img__img"
+                            src="/static/shop/assets/images/game.png"
+                            alt="Card image cap">
+                        <div class="img__description_layer">
+                            <div>
+                                <p class="img__description">
+                                    <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                        <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                            class="material-icons">play_circle_outline</i>
+                                    </a>
+
+
+                                </p>
+                            </div>
+
+                            <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                        class="rounded-circle" width="40">
+                                    Mahmoud Khirallah
+
+
+                                </p>
+                            </div>
+
+                            <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                    21h 12m
+
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+                            <h4 style="font-weight: 600" class="card-title">Introduction to Game Development  <span id="pricer" class="badge badge-pill badge-danger"
+                                    style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                            </h4>
+                            <p>Learn about the development of 2D and 3D interactive games in this hands-on course, as you explore the design of games such as Super Mario Bros., Pokémon, Angry Birds, and more</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-12">
+                        <div class="card mb-2 img__wrap">
+                            <img class="card-img-top img__img"
+                                src="/static/shop/assets/images/game.png"
+                                alt="Card image cap">
+                            <div class="img__description_layer">
+                                <div>
+                                    <p class="img__description">
+                                        <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                            <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                class="material-icons">play_circle_outline</i>
+                                        </a>
+    
+    
+                                    </p>
+                                </div>
+    
+                                <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                    <p>
+                                        <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                            class="rounded-circle" width="40">
+                                        Mahmoud Khirallah
+    
+    
+                                    </p>
+                                </div>
+    
+                                <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                    <p>
+                                        <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                        21h 12m
+    
+                                    </p>
+                                </div>
+    
+                            </div>
+    
+                            <div class="card-body">
+                                <h4 style="font-weight: 600" class="card-title">Introduction to Game Development  <span id="pricer" class="badge badge-pill badge-danger"
+                                        style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                                </h4>
+                                <p>Learn about the development of 2D and 3D interactive games in this hands-on course, as you explore the design of games such as Super Mario Bros., Pokémon, Angry Birds, and more</p>
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-12">
+                            <div class="card mb-2 img__wrap">
+                                <img class="card-img-top img__img"
+                                    src="/static/shop/assets/images/game.png"
+                                    alt="Card image cap">
+                                <div class="img__description_layer">
+                                    <div>
+                                        <p class="img__description">
+                                            <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                                <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                    class="material-icons">play_circle_outline</i>
+                                            </a>
+        
+        
+                                        </p>
+                                    </div>
+        
+                                    <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                                class="rounded-circle" width="40">
+                                            Mahmoud Khirallah
+        
+        
+                                        </p>
+                                    </div>
+        
+                                    <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                            21h 12m
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+        
+                                <div class="card-body">
+                                    <h4 style="font-weight: 600" class="card-title">Introduction to Game Development  <span id="pricer" class="badge badge-pill badge-danger"
+                                            style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                                    </h4>
+                                    <p>Learn about the development of 2D and 3D interactive games in this hands-on course, as you explore the design of games such as Super Mario Bros., Pokémon, Angry Birds, and more</p>
+        
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 col-12">
+                                <div class="card mb-2 img__wrap">
+                                    <img class="card-img-top img__img"
+                                        src="/static/shop/assets/images/game.png"
+                                        alt="Card image cap">
+                                    <div class="img__description_layer">
+                                        <div>
+                                            <p class="img__description">
+                                                <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                                    <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                        class="material-icons">play_circle_outline</i>
+                                                </a>
+            
+            
+                                            </p>
+                                        </div>
+            
+                                        <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                            <p>
+                                                <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                                    class="rounded-circle" width="40">
+                                                Mahmoud Khirallah
+            
+            
+                                            </p>
+                                        </div>
+            
+                                        <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                            <p>
+                                                <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                                21h 12m
+            
+                                            </p>
+                                        </div>
+            
+                                    </div>
+            
+                                    <div class="card-body">
+                                        <h4 style="font-weight: 600" class="card-title">Introduction to Game Development  <span id="pricer" class="badge badge-pill badge-danger"
+                                                style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                                        </h4>
+                                        <p>Learn about the development of 2D and 3D interactive games in this hands-on course, as you explore the design of games such as Super Mario Bros., Pokémon, Angry Birds, and more</p>
+            
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                <!-- <div class="col-md-3 col-sm-12 col-12">
+                    <div class="card mb-2 img__wrap">
+                        <img class="card-img-top img__img"
+                            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                            alt="Card image cap">
+                        <div class="img__description_layer">
+                            <div>
+                                <p class="img__description">
+                                    <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                        <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                            class="material-icons">play_circle_outline</i>
+                                    </a>
+
+
+                                </p>
+                            </div>
+
+                            <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                        class="rounded-circle" width="40">
+                                    Mahmoud Khirallah
+
+
+                                </p>
+                            </div>
+
+                            <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                    2h 12m
+
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+                            <h4 style="font-weight: 600" class="card-title">Aeronautical engineering & Astronomy <span id="pricer" class="badge badge-pill badge-danger"
+                                    style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                            </h4>
+                            <p>Once upon a time Scientists went to the moon but guess what, they didn't bring back a moonrock</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-sm-12 col-12">
+                    <div class="card mb-2 img__wrap">
+                        <img class="card-img-top img__img"
+                            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                            alt="Card image cap">
+                        <div class="img__description_layer">
+                            <div>
+                                <p class="img__description">
+                                    <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                        <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                            class="material-icons">play_circle_outline</i>
+                                    </a>
+
+
+                                </p>
+                            </div>
+
+                            <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                        class="rounded-circle" width="40">
+                                    Mahmoud Khirallah
+
+
+                                </p>
+                            </div>
+
+                            <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                    2h 12m
+
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+                            <h4 style="font-weight: 600" class="card-title">Aeronautical engineering & Astronomy <span id="pricer" class="badge badge-pill badge-danger"
+                                    style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                            </h4>
+                            <p>Once upon a time Scientists went to the moon but guess what, they didn't bring back a moonrock</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-sm-12 col-12">
+                    <div class="card mb-2 img__wrap">
+                        <img class="card-img-top img__img"
+                            src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                            alt="Card image cap">
+                        <div class="img__description_layer">
+                            <div>
+                                <p class="img__description">
+                                    <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                        <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                            class="material-icons">play_circle_outline</i>
+                                    </a>
+
+
+                                </p>
+                            </div>
+
+                            <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                        class="rounded-circle" width="40">
+                                    Mahmoud Khirallah
+
+
+                                </p>
+                            </div>
+
+                            <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                <p>
+                                    <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                    2h 12m
+
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+                            <h4 style="font-weight: 600" class="card-title">Aeronautical engineering & Astronomy <span id="pricer" class="badge badge-pill badge-danger"
+                                    style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                            </h4>
+                            <p>Once upon a time Scientists went to the moon but guess what, they didn't bring back a moonrock</p>
+
+                        </div>
+                    </div>
+                </div> -->
+
+             
+
+               
+
+            </div>
+            <!--/.First slide-->
+
+            <div class="carousel-item">
+                    <div class="col-md-4 col-sm-12 col-12">
+                            <div class="card mb-2 img__wrap">
+                                <img class="card-img-top img__img"
+                                    src="/static/shop/assets/images/game.png"
+                                    alt="Card image cap">
+                                <div class="img__description_layer">
+                                    <div>
+                                        <p class="img__description">
+                                            <a href={% url 'shop:coursedetail' %} class="nav-link">
+                                                <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                    class="material-icons">play_circle_outline</i>
+                                            </a>
+        
+        
+                                        </p>
+                                    </div>
+        
+                                    <div id="bb" style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <img id="cc" src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                                class="rounded-circle" width="40">
+                                            Mahmoud Khirallah
+        
+        
+                                        </p>
+                                    </div>
+        
+                                    <div id="aa" style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <i id="timer-icon" style="color:rgb(160, 4, 4)" class="material-icons">access_time</i>
+                                            21h 12m
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+        
+                                <div class="card-body">
+                                    <h4 style="font-weight: 600" class="card-title">Introduction to Game Development  <span id="pricer" class="badge badge-pill badge-danger"
+                                            style="font-size: 1.2rem;bottom:-5px;right:-5px;position: absolute;">$4</span>
+                                    </h4>
+                                    <p>Learn about the development of 2D and 3D interactive games in this hands-on course, as you explore the design of games such as Super Mario Bros., Pokémon, Angry Birds, and more</p>
+        
+                                </div>
+                            </div>
+                        </div>
+                
+
+             
+    
+            </div> 
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+<div class="container page__container" style="margin-left: 0px;margin-right: 0px;margin-top:10px;max-width:2000px;">
+
+    <div class="media align-items-center mb-headings pt-0">
+        <div class="media-body">
+                <span class="badge badge-info"  >
+                        <h1 class="h2" style="font-size: 1.999rem;margin-left:10px;color: white">Talks <a href={% url 'shop:talks' %}><span
+                            class="badge badge-pill badge-danger" style="font-size: 1.2rem;left:10px;">View
+                            All</span></a></h1>
+                </span>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="clearfix"></div>
+    <div id="carousel-example-multi1" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
+
+
+
+        <!-- Indicators -->
+        <!-- <ol class="carousel-indicators">
+            <li style="background-color:rgb(160, 4, 4)" data-target="#carousel-example-multi1" data-slide-to="0"
+                class="active"></li>
+            <li style="background-color:rgb(160, 4, 4)" data-target="#carousel-example-multi1" data-slide-to="1"></li>
+
+        </ol> -->
+        <!--/.Indicators-->
+
+        <div class="carousel-inner v-2" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+               
+                <div class="col-md-3 col-sm-12 col-12">
+                        <div class="card mb-2 img__wrap">
+                            <img class="card-img-top img__img"
+                                src="/static/shop/assets/images/talk.jpg"
+                                alt="Card image cap">
+                            <div class="img__description_layer">
+                                <div>
+                                    <p class="img__description">
+                                        <a href={% url 'shop:talkdetail' %} class="nav-link">
+                                            <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                class="material-icons">play_circle_outline</i>
+                                        </a>
+    
+    
+                                    </p>
+                                </div>
+                                <div style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                    <p>
+                                        <img src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                            class="rounded-circle" width="40">
+    
+    
+    
+                                    </p>
+                                </div>
+    
+    
+    
+                                <div style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                    <p>
+                                        <i style="font-size: 1rem;color:rgb(160, 4, 4)"
+                                            class="material-icons">access_time</i>
+                                        8m 34s
+    
+                                    </p>
+                                </div>
+    
+                            </div>
+    
+                            <div class="card-body">
+                                <h4 style="font-size: 1.2rem;font-weight: 550;" class="card-title">To design better tech, understand context 
+                                </h4>
+
+                                
+    
+                            </div>
+                        </div>
+                </div>
+
+                   
+
+
+
+
+
+
+
+            </div>
+            <!--/.First slide-->
+
+            <!-- <div class="carousel-item">
+
+
+                    <div class="col-md-2 col-sm-12 col-12">
+                            <div class="card mb-2 img__wrap">
+                                <img class="card-img-top img__img"
+                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                    alt="Card image cap">
+                                <div class="img__description_layer">
+                                    <div>
+                                        <p class="img__description">
+                                            <a href={% url 'shop:talkdetail' %} class="nav-link">
+                                                <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                    class="material-icons">play_circle_outline</i>
+                                            </a>
+        
+        
+                                        </p>
+                                    </div>
+                                    <div style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <img src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                                class="rounded-circle" width="40">
+        
+        
+        
+                                        </p>
+                                    </div>
+        
+        
+        
+                                    <div style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <i style="font-size: 1rem;color:rgb(160, 4, 4)"
+                                                class="material-icons">access_time</i>
+                                            25m
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+        
+                                <div class="card-body">
+                                    <h4 style="font-size: 1.2rem;font-weight: 550;" class="card-title">Space Travel
+                                    </h4>
+    
+                                    <p>
+                                        Space or Time? Find out which carries more density
+                                    </p>
+        
+        
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 col-12">
+                            <div class="card mb-2 img__wrap">
+                                <img class="card-img-top img__img"
+                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                    alt="Card image cap">
+                                <div class="img__description_layer">
+                                    <div>
+                                        <p class="img__description">
+                                            <a href={% url 'shop:talkdetail' %} class="nav-link">
+                                                <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                    class="material-icons">play_circle_outline</i>
+                                            </a>
+        
+        
+                                        </p>
+                                    </div>
+                                    <div style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <img src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                                class="rounded-circle" width="40">
+        
+        
+        
+                                        </p>
+                                    </div>
+        
+        
+        
+                                    <div style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <i style="font-size: 1rem;color:rgb(160, 4, 4)"
+                                                class="material-icons">access_time</i>
+                                            25m
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+        
+                                <div class="card-body">
+                                    <h4 style="font-size: 1.2rem;font-weight: 550;" class="card-title">Space Travel
+                                    </h4>
+    
+                                    <p>
+                                        Space or Time? Find out which carries more density
+                                    </p>
+        
+        
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 col-12">
+                            <div class="card mb-2 img__wrap">
+                                <img class="card-img-top img__img"
+                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                    alt="Card image cap">
+                                <div class="img__description_layer">
+                                    <div>
+                                        <p class="img__description">
+                                            <a href={% url 'shop:talkdetail' %} class="nav-link">
+                                                <i style="font-size:4.5rem;color:rgb(160, 4, 4)"
+                                                    class="material-icons">play_circle_outline</i>
+                                            </a>
+        
+        
+                                        </p>
+                                    </div>
+                                    <div style="position:absolute;left:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <img src="{% static 'shop/assets/images/people/50/guy-6.jpg' %}" alt="Avatar"
+                                                class="rounded-circle" width="40">
+        
+        
+        
+                                        </p>
+                                    </div>
+        
+        
+        
+                                    <div style="position:absolute;right:10px;top:0px;padding:5px;color:rgb(160, 4, 4)">
+                                        <p>
+                                            <i style="font-size: 1rem;color:rgb(160, 4, 4)"
+                                                class="material-icons">access_time</i>
+                                            25m
+        
+                                        </p>
+                                    </div>
+        
+                                </div>
+        
+                                <div class="card-body">
+                                    <h4 style="font-size: 1.2rem;font-weight: 550;" class="card-title">Space Travel
+                                    </h4>
+    
+                                    <p>
+                                        Space or Time? Find out which carries more density
+                                    </p>
+        
+        
+                                </div>
+                            </div>
+                    </div>
+               
+                               
+                                  
+    
+    
+    
+    
+    
+    
+    
+    
+                </div> -->
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+<div class="container page__container" style="margin-left: 0px;margin-right: 0px;margin-top:10px;max-width:2000px;">
+
+    <div class="media align-items-center mb-headings pt-0">
+        <div class="media-body">
+                <span class="badge badge-info">
+                        <h1 class="h2" style="font-size: 1.999rem;margin-left:10px;color: white">News <a href={% url 'shop:news' %}><span
+                            class="badge badge-pill badge-danger" style="font-size: 1.2rem;left:10px;">View
+                            All</span></a></h1>
+                </span>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="clearfix"></div>
+    <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
+
+
+
+        <!-- Indicators -->
+        <!-- <ol class="carousel-indicators">
+            <li style="background-color:rgb(160, 4, 4)" data-target="#carousel-example-multi" data-slide-to="0"
+                class="active"></li>
+            <li style="background-color:rgb(160, 4, 4)" data-target="#carousel-example-multi" data-slide-to="1"></li>
+
+        </ol> -->
+        <!--/.Indicators-->
+
+        <div class="carousel-inner v-2" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+                <div class="col-md-6 col-sm-12 col-12">
+                    <div class="card mb-2">
+                        <img class="card-img-top img__img"
+                            src="/static/shop/assets/images/news.jpg"
+                            alt="Card image cap">
+
+
+                        <div class="card-body">
+                            <h4 class="card-title">Step towards light-based, brain-like computing chip
+                            </h4>
+                            <p class="card-text">Scientists have succeeded in developing a piece of hardware which could pave  the way for creating computers resembling the human brain. They produced a chip containing a network  </p>
+                            <a href={% url 'shop:news' %} class="btn btn-primary btn-md btn-rounded">Read More</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            
+
+
+
+
+
+
+
+
+            </div>
+            <!--/.First slide-->
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+{% endblock content %}
+
+
+{% block javascript %}
+
+<script>
+    $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < 4; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+
+    $('#popoverData').popover();
+</script>
+
+
+
+<script type="text/javascript">
+    function SwapDivs(da, db) {
+        var d = document.getElementById(da);
+        if (d.style.display == "block") {
+            d.style.display = "none";
+            document.getElementById(db).style.display = "block";
+        } else {
+            d.style.display = "block";
+            document.getElementById(db).style.display = "none";
+        }
+    }
+</script>
+
+{% endblock %}
