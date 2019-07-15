@@ -78,6 +78,7 @@ def landing(request):
        
         "aaaaa":"uk-active",
         'cart': cart
+
     }
     return render(request,"shop/normal/landing.html",context)
 
@@ -130,10 +131,13 @@ def logout(request):
     return HttpResponseRedirect(reverse('shop:home'))
 
 def home(request):
-
+    courses = db.child("courses").get()
+    talks = db.child("talks").get()
+    news = db.child("news").get()
     context = {
        
         "home_active":"uk-active",
+        "courses":courses
         # 'cart': cart
     }
     return render(request,"shop/normal/landing.html",context)

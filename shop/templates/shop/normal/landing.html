@@ -764,15 +764,24 @@
                   
                     <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
                         <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid"> 
+                                {% if courses.each %}
+
+                                {% for course in courses.each|slice:":6" %}  
                             <li class="uk-active">
                                 <div class="uk-card-default uk-card-hover card-tags uk-card-small">
                                     <div class="uk-padding-small card-tags-header" style="background:#3131314e">
                                         <div  uk-grid>
-                                            <img src="static/shop/assets/images/courses/course-8.jpg" style="width:100%;height:35%" >
+                                                {% if course.val.cover %}
+                                            <img src="{{course.val.cover}}" style="width:100%;height:35%" >
+                                            {% else %}
+                                            <img src="/static/shop/assets/images/cover.png" style="width:100%;height:35%" >
+                                                
+                                            {% endif %}
+                                           
                                                 <span style="position: absolute;top:0%;background:linear-gradient(to right, #313131, #3131314e);width:85%" >
                                                    
                                                     <div style="height:205px" class="uk-width-3-5"> 
-                                                        <h3 class="uk-light uk-margin-small-top"> Introduction to Angluar  Introduction to Angluar  </h3>
+                                                        <h3 class="uk-light uk-margin-small-top"> {{course.val.title}}  </h3>
                                                         <!-- <h6 class="uk-light uk-margin-small-top">12 lessons</h6> -->
                                                     </div>
                                                  
@@ -783,10 +792,10 @@
                                         </div>                                 
                                     </div>
                                     <div class="uk-card-body"> 
-                                        <p> Learn the fundamentals of JavaScript, one of the most popular programming languages... </p> 
+                                        <p> {{course.val.sdescription}} </p> 
                                         <div class="uk-clearfix">
                                             <div class="uk-float-left"> 
-                                                <a class="card-span-ex" href=#> Explore </a> 
+                                                <a class="card-span-ex" href={% url 'shop:coursedetail' course.key %}> Explore </a> 
                                             </div>
                                             <div class="uk-float-right"> 
                                                 <!-- <span class="Course-tags " >EGP 45</span>  -->
@@ -797,6 +806,10 @@
                                 <div class="buttom-shadow1"></div>
                                 <div class="buttom-shadow2"></div>                       
                             </li>
+
+                            
+                            {% endfor %}  
+                            {% endif %}  
                           
                         </ul>
                         <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
@@ -824,61 +837,32 @@
                     </div>
                     <div class="uk-position-relative uk-visible-toggle  uk-container uk-padding-medium" uk-slider>
                         <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@m uk-grid"> 
+                                {% if talks.each %}
+
+                                {% for talk in talks.each|slice:":6" %}  
                             <li class="uk-active">
                                 <a href="#">
                                     <div class="uk-card-default uk-card-hover  uk-card-small feature-card uk-inline-clip">
-                                        <img class="course-img" src="/static/shop/assets/images/courses/course-10.jpg"> 
+
+                                            {% if talk.val.cover %}
+                                            <img src="{{talk.val.cover}}" class="course-img" >
+                                            {% else %}
+                                            <img src="/static/shop/assets/images/talkcover.png" class="course-img" >
+                                                
+                                            {% endif %}
+                                   
                                         <div class="uk-card-body"> 
-                                            <h4>Bootstrap Introduction </h4>
-                                            <p> Lorem ipsum dolor sit amet tempor  consectetur adipiscing elit, sed do eiusmod tempor ... </p> 
+                                            <h4>{{talk.val.title}} </h4>
+                                            <p> {{talk.val.sdescription}} </p> 
                                         </div>                                     
                                     </div>                                 
                                 </a>                             
                             </li>
-                            <li class="uk-active">
-                                <a href="#"> 
-                                    <div class="uk-card-default uk-card-hover  uk-card-small feature-card uk-inline-clip">
-                                        <img class="course-img" src="/static/shop/assets/images/courses/course-4.jpg"> 
-                                        <div class="uk-card-body"> 
-                                            <h4>Beginning JavaScript </h4>
-                                            <p> Lorem ipsum dolor sit amet tempor  consectetur adipiscing elit, sed do eiusmod tempor ... </p> 
-                                        </div>                                     
-                                    </div>                                 
-                                </a>
-                            </li>
-                            <li class="uk-active"> 
-                                <a href="#"> 
-                                    <div class="uk-card-default uk-card-hover  uk-card-small feature-card uk-inline-clip">
-                                        <img class="course-img" src="/static/shop/assets/images/courses/course-7.png"> 
-                                        <div class="uk-card-body"> 
-                                            <h4>Vue.js The Complete Guide </h4>
-                                            <p> Lorem ipsum dolor sit amet tempor  consectetur adipiscing elit, sed do eiusmod tempor ... </p> 
-                                        </div>                                     
-                                    </div>                                 
-                                </a>
-                            </li>
-                            <li> 
-                                <a href="#"> 
-                                    <div class="uk-card-default uk-card-hover  uk-card-small feature-card uk-inline-clip">
-                                        <img class="course-img" src="/static/shop/assets/images/courses/course-1.jpg"> 
-                                        <div class="uk-card-body"> 
-                                            <h4>Complete web development </h4>
-                                            <p> Lorem ipsum dolor sit amet tempor  consectetur adipiscing elit, sed do eiusmod tempor ... </p> 
-                                        </div>                                     
-                                    </div>                                 
-                                </a>
-                            </li>                         
-                            <li> 
-                                <a href="#"> 
-                                    <div class="uk-card-default uk-card-hover  uk-card-small feature-card uk-inline-clip">
-                                        <img class="course-img" src="/static/shop/assets/images/courses/course-7.png"> 
-                                        <div class="uk-card-body"> 
-                                            <h4> How to Create A Website </h4>
-                                            <p> Lorem ipsum dolor sit amet tempor  consectetur adipiscing elit, sed do eiusmod tempor ... </p> 
-                                        </div>                                     
-                                    </div>
-                                </a>                             
-                            </li>
+
+                            {% endfor %}      
+
+                            {% endif %}  
+                         
                         </ul>
                         <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
                         <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-next uk-slider-item="next"></a>
@@ -910,51 +894,32 @@
                     <!-- slider -->                 
                     <div class="uk-position-relative uk-visible-toggle uk-margin-top" uk-slider> 
                         <ul class="uk-slider-items uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid> 
+
+                            {% if news.each %}
+
+                            {% for a in news.each|slice:":6" %}  
                             <li class="uk-active"> 
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover border-radius-6"> 
                                     <a href="#" class="uk-position-cover"></a> 
-                                    <img src="/static/shop/assets/images/blog/blog-img-4.jpg"> 
+                                 
+                                    {% if a.val.cover %}
+                                            <img src="{{a.val.cover}}"  >
+                                    {% else %}
+                                        <img src="/static/shop/assets/images/talkcover.png"  >
+                                                
+                                    {% endif %}
+
+
                                     <div class="uk-card-body"> 
-                                        <h5 class="uk-margin uk-margin-remove-bottom">  interesting-js-and-css   </h5> 
+                                        <h5 class="uk-margin uk-margin-remove-bottom">  {{a.val.title}}   </h5> 
                                     </div>                                 
                                 </div>                             
-                            </li>                         
-                            <li class="uk-active"> 
-                                <div class="uk-card uk-card-default uk-card-small uk-card-hover border-radius-6"> 
-                                    <a href="#" class="uk-position-cover"></a> 
-                                    <img src="/static/shop/assets/images/blog/blog-img-5.jpg"> 
-                                    <div class="uk-card-body"> 
-                                        <h5 class="uk-margin uk-margin-remove-bottom"> 12-terminal-commands-for-web  </h5> 
-                                    </div>                                 
-                                </div>                             
-                            </li>                         
-                            <li class="uk-active"> 
-                                <div class="uk-card uk-card-default uk-card-small uk-card-hover border-radius-6"> 
-                                    <a href="#" class="uk-position-cover"></a> 
-                                    <img src="/static/shop/assets/images/blog/blog-img-3.jpg"> 
-                                    <div class="uk-card-body"> 
-                                        <h5 class="uk-margin uk-margin-remove-bottom"> Laravel Events</h5> 
-                                    </div>                                 
-                                </div>                             
-                            </li>                         
-                            <li> 
-                                <div class="uk-card uk-card-default uk-card-small uk-card-hover border-radius-6"> 
-                                    <a href="#" class="uk-position-cover"></a> 
-                                    <img src="/static/shop/assets/images/blog/blog-img-2.jpg"> 
-                                    <div class="uk-card-body"> 
-                                        <h5 class="uk-margin uk-margin-remove-bottom"> 10-awesome-web-dev-tools </h5>
-                                    </div>                                 
-                                </div>                             
-                            </li>                         
-                            <li> 
-                                <div class="uk-card uk-card-default uk-card-small uk-card-hover border-radius-6"> 
-                                    <a href="#" class="uk-position-cover"></a> 
-                                    <img src="/static/shop/assets/images/blog/blog-img-1.jpg"> 
-                                    <div class="uk-card-body"> 
-                                        <h5 class="uk-margin uk-margin-remove-bottom"> Meet to Vue2 </h5>
-                                    </div>                                 
-                                </div>                             
-                            </li>                         
+                            </li>          
+                            
+                            {% endfor %}      
+
+                            {% endif %} 
+                                               
                         </ul>                     
                         <a class="uk-position-center-left uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-previous uk-slider-item="previous"></a> 
                         <a class="uk-position-center-right uk-position-small uk-hidden-hover uk-hidden-hover uk-icon-button" href="#" uk-slidenav-next uk-slider-item="next"></a> 
