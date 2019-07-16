@@ -52,7 +52,16 @@ Home
                     <div> 
                         <div class="uk-background-cover uk-light dashboard-card" data-src="/static/shop/assets/images/admin/cards-bg.jpg" uk-img> 
                             <i class="fas fa-code icon-xxlarge uk-visible@m"></i> 
-                            <h3> 10 Talks </h3> 
+                         
+
+                            <h3> 
+                              
+                                    {% ifequal talks.each|length  1  %} 
+                                        {{talks.each | length }} talk
+                                    {% else %}
+                                        {{talks.each | length }} talks
+                                    {% endifequal %}
+                                </h3> 
                         
                             <a href="#"> View All </a>
                         </div>                         
@@ -60,7 +69,16 @@ Home
                     <div> 
                             <div class="uk-background-cover uk-light dashboard-card" data-src="/static/shop/assets/images/admin/cards-bg.jpg" uk-img> 
                                 <i class="fas fa-file-alt icon-xxlarge uk-visible@m"></i>
-                                <h3> 2 Articles </h3> 
+                              
+
+                                <h3> 
+                              
+                                        {% ifequal news.each|length  1  %} 
+                                            {{news.each | length }} article
+                                        {% else %}
+                                            {{news.each | length }} articles
+                                        {% endifequal %}
+                                    </h3> 
                             
                                 <a href="#"> View All </a>
                             </div>                         

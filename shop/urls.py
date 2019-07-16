@@ -48,6 +48,14 @@ path('newsdetail/<slug:id>', views.newsdetail , name="newsdetail"),
       path('deletechapter/<slug:courseid>/<slug:chapterid>', views.deletechapter , name="deletechapter"),
       path('editcategory/<slug:id>', views.editcategory , name="editcategory"),
 
+
+      path('editcategory/<slug:id>', views.editcategory , name="editcategory"),
+
+
+
+      
+
+    path('editcourse', views.editcourse , name="editcourse"),
     
     path('earnings', views.adminEarnings , name="adminEarnings"),
     path('statements', views.adminStatements , name="adminStatements"),

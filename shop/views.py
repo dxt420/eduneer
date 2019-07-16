@@ -128,7 +128,7 @@ def logout(request):
     # request.session['user'] = None
     # request.session['checkout_redirect'] =  None
     # auth.signOut()
-    return HttpResponseRedirect(reverse('shop:home'))
+    return HttpResponseRedirect(reverse('shop:home')) 
 
 def home(request):
     courses = db.child("courses").get()
@@ -137,7 +137,9 @@ def home(request):
     context = {
        
         "home_active":"uk-active",
-        "courses":courses
+        "courses":courses,
+        "talks":talks,
+        "news":news
         # 'cart': cart
     }
     return render(request,"shop/normal/landing.html",context)
@@ -452,12 +454,16 @@ def about(request):
 
 
 def dashboard(request):
-    # courses = db.child("courses").get()
+    courses = db.child("courses").get()
+    talks = db.child("talks").get()
+    news = db.child("news").get()
     users_count = User.objects.all().count
     context = {
        
         "dashboard_active":"uk-active",
-        # "courses":courses,
+        "courses":courses,
+        "talks":talks,
+        "news":news,
         "users_count":users_count
        
     }
@@ -805,7 +811,7 @@ def editchapter(request):
 
 
 
-def editcourse(request,id): 
+def editcourse(request): 
     data = {
         "title": request.POST.get('title'),
         "sdescription": request.POST.get('sdescription'),
@@ -814,12 +820,13 @@ def editcourse(request,id):
         "category": request.POST.get('category'),
         "ldescription": request.POST.get('ldescription'),
         "learn": request.POST.get('learn'),
-        "requirements": request.POST.get('requirements')
+        "requirements": request.POST.get('requirements'),
+        "last_updated":datetime.datetime.now().strftime("%c")
     }
-    db.child("courses").child(id).update(data)
+    db.child("courses").child(request.POST.get('courseid')).update(data)
   
     messages.info(request, 'You have successfully edited a course 🖋')
-    return HttpResponseRedirect(reverse('shop:adminCategories'))
+    return HttpResponseRedirect(reverse('shop:adminCourses'))
 
 def editcover(request): 
     now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")

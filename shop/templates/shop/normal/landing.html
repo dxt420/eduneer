@@ -217,31 +217,53 @@
                                 <div>
                                     <div class="uk-panel">
                                         <ul class="uk-nav uk-nav-primary uk-nav-center nav-white">
-                                            <li class="uk-active">
-                                                <a href="landing-home.html">Home</a>
+                                           
+
+                                            <li class="{{home_active}}">
+                                                <a href={% url 'shop:home' %}>Home</a>
                                             </li>
-                                            <li>
-                                                <a href="landing-blog.html">Blog</a>
-                                            </li>                                         
-                                            <li>
-                                                <a href="landing-about.html">About</a> 
+                                            <li class="{{courses_active}}">
+                                                <a href={% url 'shop:courses' %}>Courses</a>
+                                            </li>                                 
+                                          
+                                            <li class="{{talks_active}}">
+                                                <a href={% url 'shop:talks' %}>Talks</a>
                                             </li>
-                                            <li>
-                                                <a href="landing-pricing.html">Pricing</a>
-                                            </li>
-                                            <li>
-                                                <a href="../main/authentication.html">Sing in</a>
-                                            </li>
+                                            <li class="{{news_active}}">
+                                                <a href={% url 'shop:news' %}>News </a>
+                                            </li> 
+                                            <li class="{{partners_active}}">
+                                                <a href={% url 'shop:partners' %}>Partners </a>
+                                            </li>    
+                                            <li class="{{about_active}}">
+                                                <a href={% url 'shop:about' %}>About</a> 
+                                            </li>   
+                                            
+                                            {% if request.user.is_authenticated %}
+                                            <li class="{{out_active}}">
+                                                    <a href="#">My courses</a> 
+                                            </li>  
+                                            {% endif %}   
                                         </ul>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="uk-panel widget-text" id="widget-text-1">
-                                        <div class="textwidget">
-                                            <p class="uk-text-center"><a class="uk-button uk-button-success uk-button-large" href="../main/Homepage.html"> Start now </a></p>
-                                        </div>
-                                    </div>
+                                {% if request.user.is_authenticated %}
+                      
+                        {% else %}    
+                        <div>
+                            <div class="uk-panel widget-text" id="widget-text-1">
+                                <div class="textwidget">
+                                    <p class="uk-text-center">
+                                 
+
+                                        <button class="uk-button uk-button-success uk-button-large" href="#login-model" uk-toggle> 
+                                                 Login or Register
+                                            </button>   
+                                    </p>
                                 </div>
+                            </div>
+                        </div>
+                        {% endif %}   
                             </div>
                         </div>
                     </div>
@@ -731,8 +753,34 @@
                                         A smarter way to learn     </h2>
                                     <p class="uk-scrollspy-inview uk-light uk-animation-slide-top-small uk-text-medium uk-text-large  uk-text-light">
                                         EDUNEER delivers much more than <br>  just online courses. You will challenge yourself and <br> deepen your skills .  </p>
-                                    <a class="el-content uk-button uk-button-success uk-button-large  uk-circle" href="Homepage.html"> 
-                                        Watch Trailer           </a>
+                               
+
+                                        <button href="#view-modelXX" uk-toggle class="el-content uk-button uk-button-success uk-button-large  uk-circle"> 
+                                                <i class="fas fa-eye uk-visible@m"></i>  Watch Trailer     
+                                            </button>     
+                                            <div id="view-modelXX" uk-modal> 
+                                                    <div class="uk-modal-dialog uk-width-6-6@m"> 
+                                                        <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                                                          
+                                                            <div class="uk-modal-body"> 
+                                       
+                                                
+                                                                    <div uk-grid> 
+                                                                            <div class="uk-width-2-2@m"> 
+                                                                      
+                                                                                    <div class="uk-margin"> 
+                                                                                            <div class="video-responsive">
+                                                                                                    <iframe src="https://firebasestorage.googleapis.com/v0/b/eduneer-82d2e.appspot.com/o/files%2FmediaFunny_2_second_video.mp4%20?alt=media&token=1" frameborder="0" uk-video="automute: false" allowfullscreen uk-responsive></iframe>
+                                                                                                </div>                                              
+                                                                                        </div>                                   
+                                                                                                                   
+                                                                            </div>                                     
+                                                                                                           
+                                                                        </div>                                
+                                                                </div>    
+                          
+                                                    </div>                     
+                                                </div>  
                                 </div>
                             </div>
                         </div>
@@ -831,7 +879,7 @@
                                 <h4 class="uk-text-white uk-margin-remove uk-text-light"> Browse our featured talks </h4>
                             </div>                         
                             <div class="uk-float-right"> 
-                                <a href={% url 'shop:talks' %} class="uk-button uk-button-default uk-button-white" uk-scroll>See more</a> 
+                                <a href={% url 'shop:talks' %} class="uk-button uk-button-default uk-button-grey">See more</a> 
                             </div>                         
                         </div>
                     </div>
@@ -887,7 +935,7 @@
                                 <h4 class="uk-text-white uk-margin-remove uk-text-light">Get up to date with Eduneer </h4> 
                             </div>                         
                             <div class="uk-float-right"> 
-                                <a href={% url 'shop:news' %} class="uk-button uk-button-default uk-button-white" uk-scroll>See more</a> 
+                                <a href={% url 'shop:news' %} class="uk-button uk-button-default uk-button-grey">See more</a> 
                             </div>                         
                         </div>
                     </div>

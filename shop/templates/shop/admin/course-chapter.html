@@ -37,7 +37,10 @@ Course Sections
                 </div>
 
 
-                <form>
+                <form action={% url 'shop:editcourse' %} method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}     
+              
+                    <input type="hidden" value="{{course.key}}" name="courseid" />     
 
                     <div class="uk-modal-body">
                         <div uk-grid>
@@ -113,7 +116,7 @@ Course Sections
 
                     <div class="uk-modal-footer uk-text-right">
                         <button class="uk-button uk-button-grey uk-modal-close" type="button">Cancel</button>
-                        <button class="uk-button uk-button-success" type="button">Save</button>
+                        <button class="uk-button uk-button-success" type="submit">Save</button>
                     </div>
                 </form>
             </div>
