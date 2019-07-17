@@ -358,8 +358,9 @@ Course Detail
                                 <div> 
                                     
                                     {% if request.user.is_authenticated %}
-                                    <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href={% url 'shop:coursedashboard' course.key  %}> Start  </a>
-
+                                    <!-- <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href={% url 'shop:coursedashboard' course.key  %}> Start  </a> -->
+                                    <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href="https://www.paymestore.co/C66531" target="blank"> Start  </a>
+                                  
                                     {% else %}
                                     <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href="javascript:checkAuth()"> Start  </a>
 
