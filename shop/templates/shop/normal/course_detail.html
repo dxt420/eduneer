@@ -61,22 +61,40 @@ Course Detail
                             <div class="uk-accordion-content uk-margin-remove-top"> 
                                 <div class="tm-course-section-list">
                                     <ul> 
-                                            {% if chapter.val.lessons  %}
-                                            {% for l in chapter.val.lessons  %}
-                                        <li>
-                                            <a href={% url 'shop:courselesson' course.key chapter.key %} class="uk-link-reset"> 
-                                                <!-- Play icon  -->                                                     
-                                                <span class="uk-icon-button icon-play"> <i class="fas fa-play icon-small"></i> </span>
-                                                <!-- Course title  -->                                                     
-                                                <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">{% getLessonTitle course.key chapter.key l %}  </div>
-                                                <!-- preview link -->
-                                            </a>
-                                            {% comment %} <a class="uk-link-reset uk-margin-large-right uk-position-center-right uk-padding-small uk-text-small uk-visible@s" href="#preview-video-1" uk-toggle> <i class="fas fa-play icon-small uk-text-grey"></i> Preveiw  </a> {% endcomment %}
-                                            <!-- time -->
-                                            <span class="uk-position-center-right time uk-margin-right"> <i class="fas fa-clock icon-small"></i>  {% getLessonDuration course.key chapter.key l %}</span>
-                                        </li>                                             
-                                        {% endfor %}
-                                        {% endif %}                                    
+                                            {% comment %} {% if chapter.val.lessons  %} {% endcomment %}
+                                            {% comment %} {% for l in chapter.val.lessons  %} {% endcomment %}
+                                            {% comment %} <li> {% endcomment %}
+                                                {% comment %} <a href={% url 'shop:courselesson' course.key chapter.key %} class="uk-link-reset">  {% endcomment %}
+                                                    <!-- Play icon  -->                                                     
+                                                    {% comment %} <span class="uk-icon-button icon-play"> <i class="fas fa-play icon-small"></i> </span> {% endcomment %}
+                                                    <!-- Course title  -->                                                     
+                                                    {% comment %} <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">{% getLessonTitle course.key chapter.key l %}  </div> {% endcomment %}
+                                                    <!-- preview link -->
+                                                {% comment %} </a> {% endcomment %}
+                                                {% comment %} <a class="uk-link-reset uk-margin-large-right uk-position-center-right uk-padding-small uk-text-small uk-visible@s" href="#preview-video-1" uk-toggle> <i class="fas fa-play icon-small uk-text-grey"></i> Preveiw  </a> {% endcomment %}
+                                                <!-- time -->
+                                                {% comment %} <span class="uk-position-center-right time uk-margin-right"> <i class="fas fa-clock icon-small"></i>  {% getLessonDuration course.key chapter.key l %}</span> {% endcomment %}
+                                            {% comment %} </li>                                              {% endcomment %}
+                                            {% comment %} {% endfor %} {% endcomment %}
+                                            {% comment %} {% endif %}   {% endcomment %}
+                                        
+                                        
+                                        {% if chapter.val.lessons  %}
+                                        {% for l in chapter.val.lessons  %}
+                                    <li id="customHover">
+                                      
+                                            <!-- Play icon  -->                                                     
+                                            <span class="uk-icon-button icon-play"> <i class="fas fa-play icon-small"></i> </span>
+                                            <!-- Course title  -->                                                     
+                                            <div class="uk-panel uk-panel-box uk-text-truncate uk-margin-medium-right">{% getLessonTitle course.key chapter.key l %}  </div>
+                                            <!-- preview link -->
+                                    
+                                        {% comment %} <a class="uk-link-reset uk-margin-large-right uk-position-center-right uk-padding-small uk-text-small uk-visible@s" href="#preview-video-1" uk-toggle> <i class="fas fa-play icon-small uk-text-grey"></i> Preveiw  </a> {% endcomment %}
+                                        <!-- time -->
+                                        <span class="uk-position-center-right time uk-margin-right"> <i class="fas fa-lock icon-small"></i>  </span>
+                                    </li>                                             
+                                    {% endfor %}
+                                    {% endif %}  
                                     </ul>
                                 </div>                                     
                             </div>                                 

@@ -7,7 +7,7 @@
             <meta name="description" content="">
             <title> EDUNEER | Home </title>         
             <!-- Favicon -->
-            <link href="/static/shop/assets/img/brand/favicon.png" rel="icon" type="image/png">
+            <link rel="icon" href="/static/shop/assetsx/images/eduneer-icon.png">
             <!-- Your stylesheet-->
             <link rel="stylesheet" href="/static/shop/assets/css/uikit.css"> 
             <link rel="stylesheet" href="/static/shop/assets/css/main.css"> 
@@ -770,7 +770,7 @@
                                                                       
                                                                                     <div class="uk-margin"> 
                                                                                             <div class="video-responsive">
-                                                                                                    <iframe src="https://firebasestorage.googleapis.com/v0/b/eduneer-82d2e.appspot.com/o/files%2FmediaFunny_2_second_video.mp4%20?alt=media&token=1" frameborder="0" uk-video="automute: false" allowfullscreen uk-responsive></iframe>
+                                                                                                    <iframe src="https://firebasestorage.googleapis.com/v0/b/eduneer-82d2e.appspot.com/o/files%2FmediaFunny_2_second_video.mp4%20?alt=media&token=1" frameborder="0" uk-video="automute: true" allowfullscreen uk-responsive></iframe>
                                                                                                 </div>                                              
                                                                                         </div>                                   
                                                                                                                    
@@ -805,7 +805,7 @@
                                 <h4 class="uk-text-white uk-margin-remove uk-text-light"> Browse Our Top Courses </h4>
                             </div>                         
                             <div class="uk-float-right"> 
-                                <a href={% url 'shop:courses' %} class="uk-button uk-button-default uk-button-white" uk-scroll>See more</a> 
+                                <a href={% url 'shop:courses' %} class="uk-button uk-button-default uk-button-grey" uk-scroll>See more</a> 
                             </div>                         
                         </div>
                     </div>
@@ -948,12 +948,12 @@
                             {% for a in news.each|slice:":6" %}  
                             <li class="uk-active"> 
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover border-radius-6"> 
-                                    <a href="#" class="uk-position-cover"></a> 
+                                    <a href={% url 'shop:newsdetail' a.key %} class="uk-position-cover"></a> 
                                  
                                     {% if a.val.cover %}
                                             <img src="{{a.val.cover}}"  >
                                     {% else %}
-                                        <img src="/static/shop/assets/images/talkcover.png"  >
+                                        <img src="/static/shop/assets/images/cover.png"  >
                                                 
                                     {% endif %}
 

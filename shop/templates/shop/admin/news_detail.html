@@ -31,14 +31,15 @@ Article
             </div>
 
 
-            <form>
+            <form action={% url 'shop:editnews'  %} method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
                 <div class="uk-modal-body">
                     <div uk-grid>
 
                         <div class="uk-width">
 
-                       
+                       <input type="hidden" value="{{a.key}}" name="newsid" />
                             <div class="uk-margin">
                                 <label> Title </label>
                                 <textarea class="uk-textarea" required name="title" rows="2"> {{a.val.title}}</textarea>
@@ -79,7 +80,7 @@ Article
 
                 <div class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-grey uk-modal-close" type="button">Cancel</button>
-                    <button class="uk-button uk-button-success" type="button">Save</button>
+                    <button class="uk-button uk-button-success" type="submit">Save</button>
                 </div>
             </form>
         </div>

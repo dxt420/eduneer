@@ -51,6 +51,8 @@ path('newsdetail/<slug:id>', views.newsdetail , name="newsdetail"),
 
       path('editcategory/<slug:id>', views.editcategory , name="editcategory"),
 
+      path('editnews', views.editnews , name="editnews"),
+
 
 
       

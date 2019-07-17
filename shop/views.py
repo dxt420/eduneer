@@ -1008,6 +1008,9 @@ def addnews(request):
     return HttpResponseRedirect(reverse('shop:adminNews'))
 
 
+
+
+
 def editnews(request):
 
     data = {
@@ -1020,10 +1023,11 @@ def editnews(request):
         "last_updated":datetime.datetime.now().strftime("%c")
     }
 
+
     results = db.child("news").child(request.POST.get('newsid')).update(data)
 
     messages.success(request, 'Changes were successfully made on the article 🖋')
-    return HttpResponseRedirect(reverse('shop:adminNews', kwargs={'id': request.POST.get('newsid')}))
+    return HttpResponseRedirect(reverse('shop:adminNewsDetail', kwargs={'id': request.POST.get('newsid')}))
    
     
 
