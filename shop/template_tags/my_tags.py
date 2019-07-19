@@ -3,6 +3,9 @@ from pyrebase import pyrebase
 from num2words import num2words
 
 from datetime import datetime
+from django.contrib.auth.models import User
+
+from social_django.models import UserSocialAuth
 
 register = template.Library()
 
@@ -58,5 +61,16 @@ def getLessonDuration(courseID,chapterID,lessonID):
 def readableTime(strr):
     datetime_object = datetime.strptime(strr, '%c')
     return datetime_object.strftime("%A %B %d %Y  at %I:%M %p")
+
+
+@register.simple_tag
+def getAvatar(username):
+    user = UserSocialAuth.objects.get(user=username)
+  
+    if user.provider == "google-oauth2":
+        return user.extra_data["picture"]
+    elif user.provider == "facebook":
+        return user.extra_data["picture"].data.url
+    
 
 

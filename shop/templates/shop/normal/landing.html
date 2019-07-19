@@ -1,4 +1,6 @@
 {% load static %}
+{% load staticfiles %}
+
 <html class="night-mode" lang="en"> 
         <head> 
             <meta charset="utf-8"> 
@@ -17,6 +19,10 @@
             <script src="/static/shop/assets/js/simplebar.js"></script>         
             <script src="/static/shop/assets/js/uikit.js"></script>
             <link rel="stylesheet" href="/static/shop/assets/css/admin.css"> 
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+            <script src="{% static 'notify/notifyX.min.js' %}"></script>
 
             <style type="text/css">
                 @font-face {
@@ -470,69 +476,8 @@
                                 <div class="uk-padding-smaluk-text-left uk-height-medium"> 
                                     <div data-simplebar> 
                                         <div class="uk-padding-small" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100 ; repeat: true"> 
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature-4.png" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature-1.png" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature.jpg" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature-2.png" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature-3.png" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature-4.png" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
-                                            <div class="uk-flex-middle uk-grid-small" uk-grid> 
-                                                <div class="uk-width-3-4"> 
-                                                    <p class="uk-margin-remove">Lorem ipsum dolor   ame ..</p> 
-                                                    <p class="uk-margin-remove-top uk-text-small uk-text-muted">25 min</p> 
-                                                </div>                                                         
-                                                <div class="uk-width-1-5 uk-flex-first"> 
-                                                    <img src="/static/shop/assets/images/avatures/avature-1.png" alt="Image" class="uk-border-circle"> 
-                                                </div>                                                         
-                                            </div>                                                     
+                                            {% load notification_tags %}
+                                            {% user_notifications for box %}                                                  
                                         </div>                                                 
                                     </div>                                             
                                 </div>                                         

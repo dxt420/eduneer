@@ -1,4 +1,8 @@
 {% load static %}
+{% load staticfiles %}
+
+
+
 <html class="night-mode" lang="en"> 
     <head> 
         <meta charset="utf-8"> 
@@ -23,7 +27,7 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" ></script>
-        
+        <script src="{% static 'notify/notifyX.min.js' %}"></script>
         <style type="text/css">
             @font-face {
                 font-family: "OCR A Std Regular";

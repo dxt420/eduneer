@@ -10,6 +10,8 @@ urlpatterns = [
     path('', include('shop.urls')),
 
     url('oauth', include('social_django.urls', namespace='social')),
+
+    url(r'^notifications/', include('notify.urls', 'notifications')),
     # url(r'^ravepay/', include(('ravepay.urls', 'ravepay'), namespace='ravepay')),
     
 ]

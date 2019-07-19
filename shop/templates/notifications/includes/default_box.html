@@ -1,0 +1,17 @@
+{% load my_tags %} 
+<div data-nf-id="{{ notification.id }}" class="uk-flex-middle uk-grid-small" uk-grid>
+    <div class="uk-width-3-4">
+        <p class="uk-margin-remove">{{ notification.verb }}</p>
+       
+       
+
+        
+        <p class="uk-margin-remove-top uk-text-small uk-text-muted">
+            {{ notification.created|timesince }}
+        </p>
+    </div>
+    <div class="uk-width-1-5 uk-flex-first">
+        <img src="{% getAvatar notification.actor %}"
+            alt="Image" class="uk-border-circle">
+    </div>
+</div>

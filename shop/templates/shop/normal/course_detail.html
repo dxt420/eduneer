@@ -359,8 +359,77 @@ Course Detail
                                     
                                     {% if request.user.is_authenticated %}
                                     <!-- <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href={% url 'shop:coursedashboard' course.key  %}> Start  </a> -->
-                                    <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href="https://www.paymestore.co/C66531" target="blank"> Start  </a>
+                                    <!-- <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href="https://www.paymestore.co/C66532" target="blank"> Start  </a> -->
                                   
+
+                                    <button class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href="#checkout-modal" uk-toggle> 
+                                        Start
+                                   </button>   
+
+                                   <div id="checkout-modal" uk-modal>
+                                    <div class="uk-modal-dialog uk-width-3-5@m">
+                                        <button class="uk-modal-close-default uk-padding-small" type="button" uk-close></button>                         
+                                        <div class="uk-modal-header uk-background-grey"> 
+                                            <h4 class="uk-text-white"> Checkout  </h4> 
+                                        </div>  
+                        
+                                      
+                        
+                                            <div class="uk-modal-body">
+                                                 
+                                                    
+                                                        <div uk-grid>
+                        
+                                                                <label> 
+                                                           
+                                                                    <span class="checkmark uk-text-small"> By completing your purchase you agree to our </span>
+                                                                    <a href="#modal-overflow" class="uk-text-bold uk-text-small" uk-toggle > Terms of Service  </a> 
+                                                                    </label>   
+                                                            </div>
+
+
+                                                               <div class="uk-flex-middle" uk-grid>
+                        <div class="uk-width-1-3 uk-flex-first uk-text-center"> 
+                            {% if course.val.cover %}
+                                <img src="{{course.val.cover}}" alt=""> 
+                                {% else %}
+                                <img src="/static/shop/assets/images/cover.png" alt=""> 
+                              
+                                    
+                                {% endif %}
+                        </div>                         
+                        <div class="uk-width-2-3"> 
+                            <h4 class="uk-margin-remove"> {{course.val.title}} </h4> 
+
+                            <div>
+                                    <h2 class="uk-margin-remove"> EGP 1    </h2> 
+                                                        
+                                <span class="uk-text-middle"> <p class="uk-text-small uk-margin-remove-bottom"> total items: <span class="uk-text-bold">1</span>  </p></span>
+                            </div>                             
+                        </div>                         
+                    </div>
+                                                <div uk-grid>
+                        
+                                                    <div class="uk-width-expand@m">     
+                                                        <!-- <a class="uk-button uk-button-large uk-button-grey" href={% url 'shop:checkout' %} uk-tooltip="title: Continue to payment; delay: 500 ; pos: top-right ;animation:uk-animation-scale-up"> <i class="fa-money icon-small"></i> Complete payment using PayMe (Egypt only) <img src="/static/shop/assets/images/paymestore-logo.png" style="width: 90px; height: 29px;">  </a> -->
+                   
+                                                        <a class="uk-button uk-button-large uk-button-grey" target="blank" href="https://www.paymestore.co/C66532" uk-tooltip="title: Continue to payment; delay: 500 ; pos: top-right ;animation:uk-animation-scale-up"> <i class="fa-money icon-small"></i> Complete payment using PayMe (Egypt only) <img src="/static/shop/assets/images/paymestore-logo.png" style="width: 90px; height: 29px;">  </a>
+                                                    </div>
+                                                   
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="uk-modal-footer">
+                                                <label> 
+                                                   
+                                                  
+                                                </label>  
+                                            </div>
+                        
+                                     
+                                    </div>
+                                </div>
+
                                     {% else %}
                                     <a class="uk-button uk-button-default uk-width-1-1 uk-button-danger uk-box-shadow-medium" href="javascript:checkAuth()"> Start  </a>
 

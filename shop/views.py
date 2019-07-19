@@ -25,8 +25,12 @@ from django.http import JsonResponse
 
 import datetime
 import time
+from notify.signals import notify
 
+import requests
 
+import sys
+import chilkat
 
 config = {
     'apiKey': "AIzaSyAd8pc4st2fpBSt92GxeW9iF4Uql3j6LXI",
@@ -129,6 +133,85 @@ def logout(request):
     # request.session['checkout_redirect'] =  None
     # auth.signOut()
     return HttpResponseRedirect(reverse('shop:home')) 
+
+
+def checkout(request):
+    # The Chilkat API can be unlocked for a fully-functional 30-day trial by passing any
+    # string to the UnlockBundle method.  A program can unlock once at the start. Once unlocked,
+    # all subsequently instantiated objects are created in the unlocked state. 
+    # 
+    # After licensing Chilkat, replace the "Anything for 30-day trial" with the purchased unlock code.
+    # To verify the purchased unlock code was recognized, examine the contents of the LastErrorText
+    # property after unlocking.  For example:
+    glob = chilkat.CkGlobal()
+    success = glob.UnlockBundle("Anything for 30-day trial")
+    if (success != True):
+        print(glob.lastErrorText())
+        sys.exit()
+
+    status = glob.get_UnlockStatus()
+    if (status == 2):
+        print("Unlocked using purchased unlock code.")
+    else:
+        print("Unlocked in trial mode.")
+
+    # The LastErrorText can be examined in the success case to see if it was unlocked in
+    # trial more, or with a purchased unlock code.
+    # print(glob.lastErrorText())
+
+
+
+    rest = chilkat.CkRest()
+
+    #  URL: https://www.paymestore.co/v2/buy/step2
+    bTls = True
+    port = 443
+    bAutoReconnect = True
+    success = rest.Connect("www.paymestore.co",port,bTls,bAutoReconnect)
+    print(success)
+    if (success != True):
+        print("ConnectFailReason: " + str(rest.get_ConnectFailReason()))
+        print(rest.lastErrorText())
+        sys.exit()
+
+    #  Note: The above code does not need to be repeatedly called for each REST request.
+    #  The rest object can be setup once, and then many requests can be sent.  Chilkat will automatically
+    #  reconnect within a FullRequest* method as needed.  It is only the very first connection that is explicitly
+    #  made via the Connect method.
+
+    rest.AddQueryParam("product_number","C66532")
+    rest.AddQueryParam("data","{\"product_number\":\"C66532\"}")
+    rest.AddQueryParam("_token","8ybVQkpjYH1xulohQ1VKFQ4rAeC3mkYZVqwSFsXy")
+
+    rest.AddHeader("x-requested-with","XMLHttpRequest")
+    rest.AddHeader("origin","https://www.paymestore.co")
+    rest.AddHeader("accept-language","en-GB,en-US;q=0.9,en;q=0.8")
+    rest.AddHeader("accept","*/*")
+    rest.AddHeader("referer","https://www.paymestore.co/C66532")
+    rest.AddHeader("accept-encoding","gzip, deflate, br")
+    rest.AddHeader("authority","www.paymestore.co")
+
+    strResponseBody = rest.fullRequestFormUrlEncoded("POST","/v2/buy/step2")
+    print(rest.get_LastMethodSuccess())
+    print(rest.get_ResponseStatusCode())
+    if (rest.get_LastMethodSuccess() != True):
+        print(rest.lastErrorText())
+        sys.exit()
+
+    respStatusCode = rest.get_ResponseStatusCode()
+    if (respStatusCode >= 400):
+        print("Response Status Code = " + str(respStatusCode))
+        print("Response Header:")
+        print(rest.responseHeader())
+        print("Response Body:")
+        print(strResponseBody)
+        sys.exit()
+
+    print("Response Body:")
+    print(strResponseBody)
+  
+    # return HttpResponseRedirect(reverse('')) 
+    return render(request,"shop/normal/landing.html")
 
 def home(request):
     courses = db.child("courses").get()
@@ -732,6 +815,11 @@ def addlesson(request):
         results = db.child("chapters").child(request.POST.get('courseid')).child(request.POST.get('chapterid')).child("lessons").push(data)
 
         messages.success(request, 'You have successfully added a new lesson to the course chapter🖋')
+        user = User.objects.get(username="DextDerrickOmona")
+    
+  
+
+        notify.send(request.user, recipient=user, actor=request.user, verb=request.POST.get('lessonTitle')+' was modified', nf_type='followed_by_one_user')
         return HttpResponseRedirect(reverse('shop:adminCourseNewSubsection', kwargs={'id1': request.POST.get('courseid'),'id2': request.POST.get('chapterid')}))
 
 def edittalkvideo(request):

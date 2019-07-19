@@ -34,6 +34,7 @@ path('newsdetail/<slug:id>', views.newsdetail , name="newsdetail"),
     path('login', views.login , name="login"),
     path('logout', views.logout , name="logout"),
     path('forgot', views.forgot , name="forgot"),
+    path('checkout', views.checkout , name="checkout"),
 
 
     path('dashboard', views.dashboard , name="dashboard"),
