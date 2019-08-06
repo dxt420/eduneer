@@ -7,3 +7,7 @@ db.sqlite3
 .DS_Store
 *.mp4
 *.mkv
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
