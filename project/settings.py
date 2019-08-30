@@ -15,7 +15,7 @@ SECRET_KEY = '^(i1+z)ntu4gu$w-lbf2a9_*_$=dapbq3&-7c8y-wqx_ny^q6t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eduneer.us-east-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['eduneer-dev.us-east-2.elasticbeanstalk.com']
 
 
 # Application definition
